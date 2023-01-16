@@ -1,8 +1,20 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Login";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@model Credentials
+
+<div class="container-fluid w-50">
+    <h1 class="text-capitalize text-center">Login</h1>
+<form method="post" action="Home/Login">
+  <div class="mb-3">
+    <label asp-for = "Email" class="form-label">Email address</label>
+    <input asp-for="Email" required class="form-control" type="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label asp-for="Password" class="form-label">Password</label>
+    <input asp-for="Password" type="password" required class="form-control" id="exampleInputPassword1">
+  </div>
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
 </div>

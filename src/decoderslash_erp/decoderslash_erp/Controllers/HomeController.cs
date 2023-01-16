@@ -28,5 +28,11 @@ namespace decoderslash_erp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpPost]
+        public IActionResult Login(Credentials s)
+        {
+            return View();
+        }
     }
 }
