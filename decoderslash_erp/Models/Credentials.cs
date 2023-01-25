@@ -1,27 +1,16 @@
-﻿namespace decoderslash_erp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace decoderslash_erp.Models
 {
     public class Credentials
     {
-		private String email;
+		public int ID { get; set; }
+		[Required(ErrorMessage ="You must Enter Email")]
+		[EmailAddress]
+		public String? Email { get; set; }
+		[Required(ErrorMessage = "The Password Field Cannot be Left Empty")]
+        [DataType(DataType.Password)]
+        public String? Password { get; set; }
 
-		public String Email
-		{
-			get { return email; }
-			set { email = value; }
-		}
-
-		private String password;
-
-		public String Password
-		{
-			get { return password; }
-			set { password = value; }
-		}
-
-		public Credentials()
-		{
-			email = "";
-			password = "";
-		}
 	}
 }
