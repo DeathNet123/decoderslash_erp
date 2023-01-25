@@ -6,7 +6,7 @@
 
 <div class="container-fluid w-50">
     <h1 class="text-capitalize text-center">Login</h1>
-<form method="post" action="Home/Login">
+<form method="post" asp-controller = "Home" asp-action = "Login">
   <div class="mb-3">
     <label asp-for = "Email" class="form-label">Email address</label>
     <input asp-for="Email" required class="form-control" type="email" id="exampleInputEmail1" aria-describedby="emailHelp">
