@@ -3,6 +3,15 @@
 }
 
 @model Credentials
+@section _alert
+{
+    <div class="alert alert-success" role="alert">
+      <h4 class="alert-heading">Alert!</h4>
+      <p>We are Working Hard but taking Regular vivas of Project is not Good Move. Since we are implementing random things and moving out useless Stuff</p>
+      <hr>
+      <p class="mb-0">Instead of messing up your project what we can do is have nice little small assignment every weak and then have time to complete project in last two weeks.</p>
+    </div>
+}
 
 <div class="container-fluid">
 
@@ -24,5 +33,4 @@
         </li>
     </ul>
     <div class="text-center w-100 mt-5"> <a type="submit" class="btn btn-primary w-75" asp-controller = "Login" asp-action="Index">Login</a> </div>
-   
 </div>

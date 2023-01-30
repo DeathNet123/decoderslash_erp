@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" data-bs-theme = "dark">
+<html lang="en" data-bs-theme = "light">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,29 +22,22 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                     </ul>
-                    <button class="btn btn-light" aria-label="theme_toggler" onclick="toggle_theme()"><i class="bi bi-brightness-high"></i></button>
+                    <!--<button class="btn btn-light" aria-label="theme_toggler" onclick="toggle_theme()"><i class="bi bi-brightness-high"></i></button>-->
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <div class="alert alert-success" role="alert">
-  <h4 class="alert-heading">Alert!</h4>
-  <p>We are Working Hard but taking Regular vivas of Project is not Good Move. Since we are implementing random things and moving out useless Stuff</p>
-  <hr>
-  <p class="mb-0">Instead of messing up your project what we can do is have nice little small assignment every weak and then have time to complete project in last two weeks.</p>
-</div>
-        <main role="main" class="pb-3">
+    <div class="container-fluid">
+        @RenderSection("_alert", false)
+        <main role="main" class="d-flex flex-column min-vh-100">
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted text-center">
-        <div class="container">
+    <footer class="border-top text-muted text-center p-3">
             &copy; 2023 - DecoderSlash
-        </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <!--<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>-->

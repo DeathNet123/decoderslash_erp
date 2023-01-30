@@ -4,7 +4,7 @@
 
 @model Credentials
 
-<div class="container-fluid w-50">
+<div class="container-fluid w-50 flex-grow-1">
     <h1 class="text-capitalize text-center">Login</h1>
     <form method="post" asp-controller="Login" asp-action="Login">
         <div asp-validation-summary="All">
@@ -12,7 +12,6 @@
                 if(ViewData["valid"] != null)
                 {
                     <h6 class="text-center text-danger mx-3">Invalid Credentials</h6>
-
                 }
                 }
         </div>

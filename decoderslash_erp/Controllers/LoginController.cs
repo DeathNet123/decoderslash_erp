@@ -53,7 +53,9 @@ namespace decoderslash_erp.Controllers
                 return View("Index");
             bool check = CredentialsExists(cred);
             if(check)
+            {
                 return RedirectToAction("Index", "EmployeeDashBoard");
+            }
             ViewData["Valid"] = false;
             return View("Index");
         }
