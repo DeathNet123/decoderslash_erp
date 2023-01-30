@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace decoderslash_erp.Models
 {
-    public class Employees
+    public class Employee
     {
         public int ID { get; set; }
         public String? FirstName{ get; set; }

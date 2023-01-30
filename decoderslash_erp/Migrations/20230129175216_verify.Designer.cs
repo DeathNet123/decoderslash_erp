@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using decoderslash_erp.Data;
 
@@ -11,9 +12,11 @@ using decoderslash_erp.Data;
 namespace decoderslasherp.Migrations
 {
     [DbContext(typeof(decoderslash_erpContext))]
-    partial class decoderslasherpContextModelSnapshot : ModelSnapshot
+    [Migration("20230129175216_verify")]
+    partial class verify
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,7 +63,7 @@ namespace decoderslasherp.Migrations
                     b.Property<decimal>("BasicSalary")
                         .HasColumnType("decimal(18, 4)");
 
-                    b.Property<int>("CredentialsID")
+                    b.Property<int?>("Credentials")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateOfBirth")
@@ -92,7 +95,7 @@ namespace decoderslasherp.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CredentialsID");
+                    b.HasIndex("Credentials");
 
                     b.ToTable("Employees");
                 });
@@ -101,9 +104,7 @@ namespace decoderslasherp.Migrations
                 {
                     b.HasOne("decoderslash_erp.Models.Credentials", "cred")
                         .WithMany()
-                        .HasForeignKey("CredentialsID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Credentials");
 
                     b.Navigation("cred");
                 });

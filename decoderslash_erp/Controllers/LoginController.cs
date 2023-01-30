@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -24,7 +26,21 @@ namespace decoderslash_erp.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            if(HttpContext.Session.GetString("Cred") != null)
+            {
+                return RedirectToAction("Index", "EmployeeDashBoard");
+            }
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            if (HttpContext.Session.GetString("Cred") != null)
+            {
+                return RedirectToAction("Index", "EmployeeDashBoard");
+            }
+            return View("Index");
         }
 
         ///<summary>
@@ -37,18 +53,29 @@ namespace decoderslash_erp.Controllers
                 return View("Index");
             bool check = CredentialsExists(cred);
             if(check)
-            {
-                ViewData["State"] = true;
-            }
-            else
-            {
-                ViewData["State"] = false;
-            }
+                return RedirectToAction("Index", "EmployeeDashBoard");
+            ViewData["Valid"] = false;
             return View("Index");
         }
         private bool CredentialsExists(Credentials user_cred)
         {
-            return (_context.Credentials.Any((Credentials cred) => cred.Email.Equals(user_cred.Email) && cred.Password.Equals(user_cred.Password)));
+            Credentials? cred = _context.Credentials.FirstOrDefault((Credentials creds) => creds.Email == user_cred.Email && creds.Password == user_cred.Password);
+            if(cred != null)
+            {
+                Console.WriteLine("found");
+                Employee? data = _context.Employees.FirstOrDefault((Employee emp) => emp.CredentialsID == cred.ID);
+                MakeSession(cred, data!);
+                return true;
+            }
+            return false;
+        }
+
+        private bool MakeSession(Credentials cred, Employee Data )
+        {
+            HttpContext.Session.SetString("Cred", JsonSerializer.Serialize<Credentials>(cred));
+            HttpContext.Session.SetString("Data", JsonSerializer.Serialize<Employee>(Data));
+            HttpContext.Session.SetString("Designation", Data.Designation ??= "Intruder");
+            return true;
         }
     }
 }

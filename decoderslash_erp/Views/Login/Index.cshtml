@@ -5,21 +5,17 @@
 @model Credentials
 
 <div class="container-fluid w-50">
-    @{
-        bool state = (bool) (ViewData["State"] ??= false);
-
-        if(state)
-        {
-            <h1>Good Work</h1>
-        }
-        else
-        {
-            <h1>Get Lost</h1>
-        }
-    }
     <h1 class="text-capitalize text-center">Login</h1>
     <form method="post" asp-controller="Login" asp-action="Login">
-        <div asp-validation-summary="All"></div>
+        <div asp-validation-summary="All">
+            @{
+                if(ViewData["valid"] != null)
+                {
+                    <h6 class="text-center text-danger mx-3">Invalid Credentials</h6>
+
+                }
+                }
+        </div>
         <div class="mb-3">
             <label asp-for="Email" class="form-label">Email address</label>
             <input asp-for="Email" class="form-control" >
