@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "SignUp";
+}
+
+@model SignUp
+
+<div class="container-fluid w-50 flex-grow-1">
+    <h1 class="text-capitalize text-center">Login</h1>
+    <form method="post" asp-controller="SignUp" asp-action="SignUp">
+        <div asp-validation-summary="All">
+            @{
+                if (ViewData["valid"] != null)
+                {
+                   <h6 class="text-center text-danger mx-3">Invalid Credentials</h6>
+                }
+            }
+        </div>
+        <div class="mb-3">
+            <label asp-for="Cred.Email" class="form-label">Email address</label>
+            <input asp-for="Cred.Email" class="form-control" >
+        </div>
+        <div class="mb-3">
+            <label asp-for="Cred.Password" class="form-label">Password</label>
+            <input asp-for="Cred.Password" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label asp-for="Emp.FirstName" class="form-label">FirstName</label>
+            <input asp-for="Emp.FirstName" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label asp-for="Emp.LastName" class="form-label">FirstName</label>
+            <input asp-for="Emp.LastName" class="form-control">
+        </div>
+        <div class=" = text-center w-100 mt-2">
+        <button type="submit" class="btn btn-primary w-75">Add</button></div>
+    </form>
+</div>

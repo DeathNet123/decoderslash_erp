@@ -8,9 +8,26 @@
 <div class="flex-fill px-3 py-3 mx-3 my-3 wboard">
     <h2 class="text-center" style="color : #301E67">Welcome, @Model.FirstName</h2>
     
-        @{
-            CardSectionModel cardSection = new CardSectionModel();
-        }
+    @{
+        List<CardModelLeft> cards = new List<CardModelLeft>();
+        cards.Add(new CardModelLeft
+        {
+            Counter = 278,
+            Tag = "Add New User",
+            Icon = "icon-pencil primary",
+            Types = "Left"
+        });
+
+        List<List<CardModelLeft>> data = new List<List<CardModelLeft>>();
+        data.Add(cards);
+        CardSectionModel cardSection = new CardSectionModel()
+        {
+            Head = "Site Controls",
+            Tag = "Admins Love Controlling Systems :)",
+            Rows = 1,
+            Data = data
+        };
+    }
         <partial name = "_CardSection" model = "cardSection" />
         
 </div>

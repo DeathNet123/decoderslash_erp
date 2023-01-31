@@ -1,0 +1,14 @@
+﻿@model List<CardModelLeft>
+
+@{
+    Dictionary<String, String> dict = new Dictionary<string, string>();
+    dict.Add("Left", "_CardLeft");
+    dict.Add("Right", "_CardRight");
+    foreach(var card in @Model)
+    {
+        string? view = dict.GetValueOrDefault(card.Types);
+        <div class="col-xl-3 col-sm-6 col-12">
+            <partial name ="@view" model = "@card"/>
+        </div>
+    }
+}
