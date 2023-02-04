@@ -13,7 +13,19 @@ namespace decoderslash_erp.Controllers
                 return RedirectToAction("Index", "Login");
             String? cake = HttpContext.Session.GetString("Data");
             Employee? emp = JsonSerializer.Deserialize<Employee>(cake!);
-            return View(emp!);
+
+            // !!!!!!!!!!!!!! We have to make changes here...................!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+            DashBoard dashBoard = new DashBoard();
+            dashBoard.employee = emp;
+
+            List<CardSectionModel> AllSections = DashBoardRepository.MakeSectionsList();
+            dashBoard.controls = AllSections;
+
+            // !!!!!!!!!!!!!! We have to make changes here...................!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+            //return View(emp!);
+            return View(dashBoard!);
         }
     }
 }
