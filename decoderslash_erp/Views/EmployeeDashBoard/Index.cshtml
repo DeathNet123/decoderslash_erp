@@ -9,51 +9,7 @@
 <div class="flex-fill px-3 py-3 mx-3 my-3 wboard">
     <h2 class="text-center" style="color : #301E67">Welcome, @Model.employee.FirstName</h2>
     
-    @*@{
-        List<CardModelLeft> cards = new List<CardModelLeft>();
-        cards.Add(new CardModelLeft
-        {
-            Counter = 278,
-            Tag = "Add New User",
-            Icon = "icon-pencil primary",
-            Types = "Left",
-            Controller = "SignUp",
-            Action = "Index"
-        });
 
-        cards.Add(new CardModelLeft
-        {
-            Counter = 156,
-            Tag = "New Clients",
-            Icon = "icon-user success",
-            Types = "Right",
-            Controller = "#",
-            Action = "#"
-        });
-
-        cards.Add(new CardModelLeft
-            {
-                Counter = 278,
-                Tag = "New Posts",
-                Icon = "icon-book-open primary",
-                Controller = "#",
-                Types = "Progress",
-                Volume = "10",
-                Action = "#"
-            });
-
-        List<List<CardModelLeft>> data = new List<List<CardModelLeft>>();
-        data.Add(cards);
-        CardSectionModel cardSection = new CardSectionModel()
-        {
-            Head = "Site Controls",
-            Tag = "Admins Love Controlling Systems :)",
-            Rows = 1,
-            Data = data
-        };
-    }*@
-
-       @* <partial name = "_CardSection" model = "cardSection" />*@
         @{
         for (int idx = 0; idx < @Model.controls.Count; idx++)
         {
