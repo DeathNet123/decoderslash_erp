@@ -4,6 +4,8 @@
     Dictionary<String, String> dict = new Dictionary<string, string>();
     dict.Add("Left", "_CardLeft");
     dict.Add("Right", "_CardRight");
+    dict.Add("Progress", "_ProgressCard");
+    dict.Add("Large", "_LargeCard");
     foreach(var card in @Model)
     {
         string? view = dict.GetValueOrDefault(card.Types);

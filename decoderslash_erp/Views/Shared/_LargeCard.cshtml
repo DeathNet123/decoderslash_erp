@@ -1,0 +1,21 @@
+﻿@model CardModelLeft
+<a asp-controller="@Model.Controller" asp-action="@Model.Action">
+<div class="card ontouch">
+<div class="card-content">
+    <div class="card-body cleartfix">
+    <div class="media align-items-stretch">
+        <div class="align-self-center">
+        <h1 class="mr-2">@Model.Counter</h1>
+        </div>
+        <div class="media-body">
+        <h4>@Model.Tag</h4>
+        <span>@Model.Tag2</span>
+        </div>
+        <div class="align-self-center">
+        <i class="@Model.Icon font-large-2"></i>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+</a>

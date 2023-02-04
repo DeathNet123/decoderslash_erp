@@ -20,6 +20,27 @@
             Action = "Index"
         });
 
+        cards.Add(new CardModelLeft
+        {
+            Counter = 156,
+            Tag = "New Clients",
+            Icon = "icon-user success",
+            Types = "Right",
+            Controller = "#",
+            Action = "#"
+        });
+
+        cards.Add(new CardModelLeft
+            {
+                Counter = 278,
+                Tag = "New Posts",
+                Icon = "icon-book-open primary",
+                Controller = "#",
+                Types = "Progress",
+                Volume = "10",
+                Action = "#"
+            });
+
         List<List<CardModelLeft>> data = new List<List<CardModelLeft>>();
         data.Add(cards);
         CardSectionModel cardSection = new CardSectionModel()
