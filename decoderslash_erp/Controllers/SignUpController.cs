@@ -36,8 +36,11 @@ namespace decoderslash_erp.Controllers
         [HttpPost]
         public IActionResult SignUp(SignUp sign)
         {
-            Console.WriteLine(sign);
-            return View("Index");
+            if(!ModelState.IsValid)
+                return View("Index");
+            SignUpRepository repo = new SignUpRepository(_context);
+            repo.AddEmployee(sign);
+            return RedirectToAction("Index", "EmployeeDashBoard");
         }
     }
 }
