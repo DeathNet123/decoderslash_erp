@@ -39,6 +39,5 @@ namespace decoderslash_erp.Models
         [ForeignKey("Credentials")]
         public int CredentialsID { get; set; }
 
-        public int random { get; set; }
     }
 }
