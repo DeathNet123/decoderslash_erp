@@ -38,7 +38,7 @@ namespace decoderslash_erp.Controllers
         {
             if (HttpContext.Session.GetString("Cred") != null)
             {
-                return RedirectToAction("Index", "EmployeeDashBoard");
+                return RedirectToAction("Index", "EmployeeDashBoard"); // It can be any dashboard not employee specifically
             }
             return View("Index");
         }

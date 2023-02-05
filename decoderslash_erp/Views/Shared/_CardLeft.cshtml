@@ -1,18 +1,18 @@
 ﻿@model CardModelLeft
 <a asp-controller = "@Model.Controller" asp-action="@Model.Action"> 
-<div class="card ontouch" >
-<div class="card-content" asp-controller = "">
-    <div class="card-body">
-        <div class="media d-flex">
-            <div class="align-self-center">
-                <i class="@Model.Icon font-large-2 float-left"></i>
-            </div>
-            <div class="media-body text-right">
-                <h3>@Model.Counter</h3>
-                <span>@Model.Tag</span>
+    <div class="card ontouch" >
+    <div class="card-content" asp-controller = "">
+        <div class="card-body">
+            <div class="media d-flex">
+                <div class="align-self-center">
+                    <i class="@Model.Icon font-large-2 float-left"></i>
+                </div>
+                <div class="media-body text-right">
+                    <h3>@Model.Counter</h3>
+                    <span>@Model.Tag</span>
+                </div>
             </div>
         </div>
     </div>
-</div>
-</div>
+    </div>
 </a>
