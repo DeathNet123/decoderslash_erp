@@ -1,7 +1,16 @@
-﻿namespace decoderslash_erp.Models
+﻿using decoderslash_erp.Data;
+using Microsoft.EntityFrameworkCore;
+
+namespace decoderslash_erp.Models
 {
     public class DashBoardRepository
     {
+        private readonly decoderslash_erpContext _context;
+
+        public DashBoardRepository(decoderslash_erpContext context)
+        {
+            _context = context;
+        }
         public static List<CardSectionModel> MakeEmployeeSectionsList()
         {
             List<CardModelLeft> cards = new List<CardModelLeft>();
@@ -126,8 +135,8 @@
             List<CardModelLeft> cards = new List<CardModelLeft>();
             cards.Add(new CardModelLeft
             {
-                Counter = 278,
-                Tag = "Admin",
+                Counter = 1,
+                Tag = "Add Employee",
                 Icon = "icon-pencil primary",
                 Types = "Left",
                 Controller = "SignUp",
@@ -136,23 +145,22 @@
 
             cards.Add(new CardModelLeft
             {
-                Counter = 156,
-                Tag = "New Admin",
+                Counter = 2,
+                Tag = "Show Employee",
                 Icon = "icon-user success",
                 Types = "Right",
-                Controller = "#",
-                Action = "#"
+                Controller = "EmployeeDashBoard",
+                Action = "SearchEmployee"
             });
 
             cards.Add(new CardModelLeft
             {
                 Counter = 278,
-                Tag = "New Admin",
+                Tag = "Delete Employee",
                 Icon = "icon-book-open primary",
-                Controller = "#",
-                Types = "Progress",
-                Volume = "10",
-                Action = "#"
+                Types = "Left",
+                Controller = "EmployeeDashBoard",
+                Action = "DeleteEmployee"
             });
 
             List<CardModelLeft> cards1 = new List<CardModelLeft>();
@@ -358,6 +366,23 @@
             cardsectionlist.Add(cardSection1);
 
             return cardsectionlist;
+        }
+        public Employee SearchEmployee(int id)
+        {
+            Employee? emp = _context.Employees.FirstOrDefault((Employee emp) => emp.ID.Equals(id));
+            return emp;
+        }
+        public int DeleteEmployee(int id)
+        {
+            Employee? emp = _context.Employees.FirstOrDefault((Employee emp) => emp.ID.Equals(id));
+            if (emp == null)
+            {
+                return 0;
+            }
+            _context.Employees.Remove(emp);
+
+            _context.SaveChanges();
+            return 1;
         }
     }
 }
