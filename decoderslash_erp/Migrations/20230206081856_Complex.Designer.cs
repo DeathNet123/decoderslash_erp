@@ -12,8 +12,8 @@ using decoderslash_erp.Data;
 namespace decoderslasherp.Migrations
 {
     [DbContext(typeof(decoderslash_erpContext))]
-    [Migration("20230129175216_verify")]
-    partial class verify
+    [Migration("20230206081856_Complex")]
+    partial class Complex
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,7 +46,7 @@ namespace decoderslasherp.Migrations
                     b.ToTable("Credentials");
                 });
 
-            modelBuilder.Entity("decoderslash_erp.Models.Employees", b =>
+            modelBuilder.Entity("decoderslash_erp.Models.Employee", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -55,6 +55,7 @@ namespace decoderslasherp.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Age")
@@ -63,16 +64,18 @@ namespace decoderslasherp.Migrations
                     b.Property<decimal>("BasicSalary")
                         .HasColumnType("decimal(18, 4)");
 
-                    b.Property<int?>("Credentials")
+                    b.Property<int>("CredentialsID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Designation")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("FuelAllowence")
@@ -85,28 +88,19 @@ namespace decoderslasherp.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("OverTimeHourlyRate")
                         .HasColumnType("decimal(18, 4)");
 
                     b.Property<string>("PhoneNo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("Credentials");
-
                     b.ToTable("Employees");
-                });
-
-            modelBuilder.Entity("decoderslash_erp.Models.Employees", b =>
-                {
-                    b.HasOne("decoderslash_erp.Models.Credentials", "cred")
-                        .WithMany()
-                        .HasForeignKey("Credentials");
-
-                    b.Navigation("cred");
                 });
 #pragma warning restore 612, 618
         }

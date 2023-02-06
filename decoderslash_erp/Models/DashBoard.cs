@@ -2,7 +2,7 @@
 {
     public class DashBoard
     {
-        public Employee employee { get; set; }
-        public List<CardSectionModel> controls { get; set; }
+        public Employee? employee { get; set; }
+        public List<CardSectionModel>? controls { get; set; }
     }
 }

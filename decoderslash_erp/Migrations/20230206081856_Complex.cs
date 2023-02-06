@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace decoderslasherp.Migrations
 {
     /// <inheritdoc />
-    public partial class LastResort : Migration
+    public partial class Complex : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
+           /* migrationBuilder.CreateTable(
                 name: "Credentials",
                 columns: table => new
                 {
@@ -48,7 +48,7 @@ namespace decoderslasherp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employees", x => x.ID);
-                });
+                });*/
         }
 
         /// <inheritdoc />

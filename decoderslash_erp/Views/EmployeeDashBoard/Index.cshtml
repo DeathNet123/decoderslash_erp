@@ -2,18 +2,17 @@
     ViewData["Title"] = "DashBoard";
 
 }
-@*@model Employee //Model should be of Dashboard type => Employee emp, List<CardSectionModel> Controls*@
-@model DashBoard;
+@model DashBoard //Model should be of Dashboard type => Employee emp, List<CardSectionModel> Controls
 
 <partial name="_dashDepend" />
+
 <div class="flex-fill px-3 py-3 mx-3 my-3 wboard">
-    <h2 class="text-center" style="color : #301E67">Welcome, @Model.employee.FirstName</h2>
-    
+    <h2 class="text-center" style="color : #301E67">Welcome, @Model.employee!.FirstName</h2>    
 
         @{
-            for (int idx = 0; idx < @Model.controls.Count; idx++)
-            {
-                <partial name="_CardSection" model="@Model.controls[idx]" />
-            }
+        for (int idx = 0; idx < @Model.controls.Count; idx++)
+        {
+            <partial name="_CardSection" model="@Model.controls[idx]" />
+        }
         }
 </div>

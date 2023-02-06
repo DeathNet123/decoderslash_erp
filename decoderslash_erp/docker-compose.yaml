@@ -1,0 +1,22 @@
+version: "3.9"  
+services:
+  web_api:
+    image: decoderslash
+    container_name: app
+    ports:
+      - "5000:80"
+    environment:
+      - Volume=/tmp/
+    volumes:
+      - myapp:/tmp/
+  sql:
+    image: decodersql
+    container_name: decoderdb #REMEMBER TO POINT YOUR DB STRING TO THIS NAME 
+    ports: # not actually needed, because the two services are on the same network
+      - "1433:1433" 
+    environment:
+      - ACCEPT_EULA=y
+      - MSSQL_SA_PASSWORD=yourStrong(!)Password
+    user: root
+volumes:
+  myapp:

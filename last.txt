@@ -1,0 +1,22 @@
+
+  
+  "ConnectionStrings": {
+    "decoderslash_erpContext": "Server=(localdb)\\mssqllocaldb;Database=decoderslash_erpContext-96fc916d-ea40-42f4-b2a0-02870c42efd8;Trusted_Connection=True;MultipleActiveResultSets=true"
+  },
+
+
+
+
+Publish and dockerize your app expose the port 80 for the app to communicate
+
+pull the sql image from microsoft image
+
+make dock  file which adds the pulled image as base and then add the backup of your db if you have data to continer and then restore db 
+
+
+
+docker run -u 0:0 e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=yourStrong(!)Password" -p 1433:1433
+
+
+
+"Server=127.0.0.1,1433;Database=decoderslash_erpContext-96fc916d-ea40-42f4-b2a0-02870c42efd8;User Id=SA;password=yourStrong(!)Password;Trusted_Connection=False;MultipleActiveResultSets=true;TrustServerCertificate=True"
