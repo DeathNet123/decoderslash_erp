@@ -62,6 +62,11 @@ namespace decoderslash_erp.Controllers
         {
             DashBoardRepository repo = new DashBoardRepository(_context);
             Employee emp = repo.SearchEmployee(id);
+            if (emp == null)
+            {
+                ViewData["response"] = "Employee with given ID does not exist";
+                return View("search_by_id_form");
+            }
             return View("ShowEmployee", emp);
         }
         [HttpPost]
@@ -74,7 +79,7 @@ namespace decoderslash_erp.Controllers
                 ViewData["response"] = "Employee with given ID does not exist";
                 return View("delete_by_id_form");
             }
-            ViewData["response"] = "Employee with given ID does not exist";
+            ViewData["response"] = "Employee deleted successfully";
             return View("delete_by_id_form");
         }
     }
