@@ -79,5 +79,11 @@ namespace decoderslash_erp.Controllers
             HttpContext.Session.SetString("Designation", Data.Designation ??= "Intruder");
             return true;
         }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Login");
+        }
     }
 }

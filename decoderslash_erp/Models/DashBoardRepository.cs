@@ -16,18 +16,18 @@ namespace decoderslash_erp.Models
             List<CardModelLeft> cards = new List<CardModelLeft>();
             cards.Add(new CardModelLeft
             {
-                Counter = 278,
-                Tag = "Add New User",
+                Counter = 1,
+                Tag = "Projects",
                 Icon = "icon-pencil primary",
                 Types = "Left",
-                Controller = "SignUp",
-                Action = "Index"
+                Controller = "#",
+                Action = "#"
             });
 
             cards.Add(new CardModelLeft
             {
-                Counter = 156,
-                Tag = "New Clients",
+                Counter = 2,
+                Tag = "Tasks",
                 Icon = "icon-user success",
                 Types = "Right",
                 Controller = "#",
@@ -36,16 +36,15 @@ namespace decoderslash_erp.Models
 
             cards.Add(new CardModelLeft
             {
-                Counter = 278,
-                Tag = "New Posts",
+                Counter = 3,
+                Tag = "Show Details",
                 Icon = "icon-book-open primary",
                 Controller = "#",
-                Types = "Progress",
-                Volume = "10",
+                Types = "Left",
                 Action = "#"
             });
 
-            List<CardModelLeft> cards1 = new List<CardModelLeft>();
+           /* List<CardModelLeft> cards1 = new List<CardModelLeft>();
             cards1.Add(new CardModelLeft
             {
                 Counter = 278,
@@ -64,12 +63,12 @@ namespace decoderslash_erp.Models
                 Types = "Right",
                 Controller = "#",
                 Action = "#"
-            });
+            });*/
 
 
             List<List<CardModelLeft>> data = new List<List<CardModelLeft>>();
             data.Add(cards);
-            data.Add(cards1);
+            //data.Add(cards1);
 
             CardSectionModel cardSection = new CardSectionModel()
             {
@@ -79,7 +78,7 @@ namespace decoderslash_erp.Models
                 Data = data
             };
 
-            List<CardModelLeft> cards2 = new List<CardModelLeft>();
+            /*List<CardModelLeft> cards2 = new List<CardModelLeft>();
             cards2.Add(new CardModelLeft
             {
                 Counter = 278,
@@ -121,12 +120,12 @@ namespace decoderslash_erp.Models
                 Tag = "This design is tricking my mind ;)",
                 Rows = 1,
                 Data = data1
-            };
+            };*/
 
 
             List<CardSectionModel> cardsectionlist = new List<CardSectionModel>();
             cardsectionlist.Add(cardSection);
-            cardsectionlist.Add(cardSection1);
+            //cardsectionlist.Add(cardSection1);
 
             return cardsectionlist;
         }
@@ -155,7 +154,7 @@ namespace decoderslash_erp.Models
 
             cards.Add(new CardModelLeft
             {
-                Counter = 278,
+                Counter = 3,
                 Tag = "Delete Employee",
                 Icon = "icon-book-open primary",
                 Types = "Left",
@@ -163,7 +162,7 @@ namespace decoderslash_erp.Models
                 Action = "DeleteEmployee"
             });
 
-            List<CardModelLeft> cards1 = new List<CardModelLeft>();
+            /*List<CardModelLeft> cards1 = new List<CardModelLeft>();
             cards1.Add(new CardModelLeft
             {
                 Counter = 278,
@@ -182,22 +181,22 @@ namespace decoderslash_erp.Models
                 Types = "Right",
                 Controller = "#",
                 Action = "#"
-            });
+            });*/
 
 
             List<List<CardModelLeft>> data = new List<List<CardModelLeft>>();
             data.Add(cards);
-            data.Add(cards1);
+            //data.Add(cards1);
 
             CardSectionModel cardSection = new CardSectionModel()
             {
                 Head = "Site Admin Controls",
                 Tag = "Admins Love Controlling Systems :)",
-                Rows = 2,
+                Rows = 1,
                 Data = data
             };
 
-            List<CardModelLeft> cards2 = new List<CardModelLeft>();
+            /*List<CardModelLeft> cards2 = new List<CardModelLeft>();
             cards2.Add(new CardModelLeft
             {
                 Counter = 278,
@@ -239,12 +238,12 @@ namespace decoderslash_erp.Models
                 Tag = "This design is tricking my mind ;)",
                 Rows = 2,
                 Data = data1
-            };
+            };*/
 
 
             List<CardSectionModel> cardsectionlist = new List<CardSectionModel>();
             cardsectionlist.Add(cardSection);
-            cardsectionlist.Add(cardSection1);
+            //cardsectionlist.Add(cardSection1);
 
             return cardsectionlist;
         }

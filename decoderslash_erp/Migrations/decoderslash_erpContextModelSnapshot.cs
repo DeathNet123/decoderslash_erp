@@ -58,6 +58,9 @@ namespace decoderslasherp.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
+                    b.Property<string>("AvatarPath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("BasicSalary")
                         .HasColumnType("decimal(18, 4)");
 
