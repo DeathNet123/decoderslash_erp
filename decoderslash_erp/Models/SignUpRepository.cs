@@ -16,7 +16,7 @@ namespace decoderslash_erp.Models
             _context.Credentials.Add(sign.Cred!);
 
             _context.SaveChanges();
-            Credentials? creds = _context.Credentials.FirstOrDefault((Credentials cred) => cred.Email!.Equals(sign.Cred!.Email));
+            Credentials? creds = _context.Credentials.FirstOrDefault((Credentials cred) => cred.Email!.Equals(sign.Cred!.Email)&&cred.isActive);
             sign.Emp.CredentialsID = creds.ID;
             _context.Employees.Add(sign.Emp);
             _context.SaveChanges();

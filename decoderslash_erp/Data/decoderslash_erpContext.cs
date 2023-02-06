@@ -17,5 +17,7 @@ namespace decoderslash_erp.Data
         public DbSet<decoderslash_erp.Models.Credentials> Credentials { get; set; } = default!;
 
         public DbSet<decoderslash_erp.Models.Employee> Employees { get; set; } = default!;
+
+        public int override Save
     }
 }

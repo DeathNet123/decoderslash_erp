@@ -2,7 +2,7 @@
 
 namespace decoderslash_erp.Models
 {
-    public class Credentials
+    public class Credentials: Audit
     {
 		public int ID { get; set; }
 		[Required(ErrorMessage ="You must Enter Email")]

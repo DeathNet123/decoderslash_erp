@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace decoderslash_erp.Models
 {
-    public class Employee
+    public class Employee:Audit
     {
         public int ID { get; set; }
         public String? AvatarPath { get; set; }

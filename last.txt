@@ -19,4 +19,4 @@ docker run -u 0:0 e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=yourStrong(!)Password"
 
 
 
-"Server=127.0.0.1,1433;Database=decoderslash_erpContext-96fc916d-ea40-42f4-b2a0-02870c42efd8;User Id=SA;password=yourStrong(!)Password;Trusted_Connection=False;MultipleActiveResultSets=true;TrustServerCertificate=True"
+"Server=decoderdb;Database=decoderslash_erpContext-96fc916d-ea40-42f4-b2a0-02870c42efd8;User Id=SA;password=yourStrong(!)Password;Trusted_Connection=False;MultipleActiveResultSets=true;TrustServerCertificate=True"
