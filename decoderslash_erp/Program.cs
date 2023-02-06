@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using decoderslash_erp.Data;
 using Microsoft.AspNetCore.Session;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
 var builder = WebApplication.CreateBuilder(args);

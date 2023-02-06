@@ -6,6 +6,7 @@ namespace decoderslash_erp.Models
     public class Employee
     {
         public int ID { get; set; }
+        public String? AvatarPath { get; set; }
         [Required]
         public String? FirstName{ get; set; }
         [Required]

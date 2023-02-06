@@ -38,6 +38,18 @@ namespace decoderslash_erp.Controllers
         {
             if(!ModelState.IsValid)
                 return View("Index");
+            if(sign.file != null)
+            {
+                IFormFile file = sign.file;
+                String random = Path.GetRandomFileName();
+                sign.Emp!.AvatarPath = random;
+                String? location = System.Environment.GetEnvironmentVariable("Volume");
+                Console.WriteLine($" Here is the Location{location}");
+                String realPath = Path.Combine(location!, random);
+                FileStream fs = new FileStream(realPath, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None);
+                file.CopyTo(fs);
+                fs.Close();
+            }
             SignUpRepository repo = new SignUpRepository(_context);
             repo.AddEmployee(sign);
             return RedirectToAction("Index", "EmployeeDashBoard");
