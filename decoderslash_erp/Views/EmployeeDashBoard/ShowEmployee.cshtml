@@ -1,0 +1,39 @@
+﻿@model Employee
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Address</th>
+            <th scope="col">PhoneNo</th>
+            <th scope="col">DOB</th>
+            <th scope="col">Age</th>
+            <th scope="col">Designation</th>
+            <th scope="col">Basic Salary</th>
+            <th scope="col">Fuel Allowance</th>
+            <th scope="col">Housing</th>
+            <th scope="col">Overtime Rate</th>
+            <th scope="col">Joining Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>@Model.ID</td>
+            <td>@Model.FirstName</td>
+            <td>@Model.LastName</td>
+            <td>@Model.Address</td>
+            <td>@Model.PhoneNo</td>
+            <td>@Model.DateOfBirth</td>
+            <td>@Model.Age</td>
+            <td>@Model.Designation</td>
+            <td>@Model.BasicSalary</td>
+            <td>@Model.FuelAllowence</td>
+            <td>@Model.Housing</td>
+            <td>@Model.OverTimeHourlyRate</td>
+            <td>@Model.JoiningDate</td>
+        </tr>
+    </tbody>
+</table>
