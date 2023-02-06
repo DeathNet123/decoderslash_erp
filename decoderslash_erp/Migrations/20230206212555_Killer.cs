@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace decoderslasherp.Migrations
 {
     /// <inheritdoc />
-    public partial class Transfer : Migration
+    public partial class Killer : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,9 +20,10 @@ namespace decoderslasherp.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserAdd = table.Column<int>(type: "int", nullable: false),
-                    UserDel = table.Column<int>(type: "int", nullable: false),
-                    UserMod = table.Column<int>(type: "int", nullable: false),
-                    isActive = table.Column<bool>(type: "bit", nullable: false)
+                    UserMod = table.Column<int>(type: "int", nullable: true),
+                    isActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -50,9 +51,10 @@ namespace decoderslasherp.Migrations
                     JoiningDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CredentialsID = table.Column<int>(type: "int", nullable: false),
                     UserAdd = table.Column<int>(type: "int", nullable: false),
-                    UserDel = table.Column<int>(type: "int", nullable: false),
-                    UserMod = table.Column<int>(type: "int", nullable: false),
-                    isActive = table.Column<bool>(type: "bit", nullable: false)
+                    UserMod = table.Column<int>(type: "int", nullable: true),
+                    isActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {

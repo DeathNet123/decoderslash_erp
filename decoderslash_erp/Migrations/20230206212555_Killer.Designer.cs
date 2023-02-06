@@ -12,8 +12,8 @@ using decoderslash_erp.Data;
 namespace decoderslasherp.Migrations
 {
     [DbContext(typeof(decoderslash_erpContext))]
-    [Migration("20230206203151_Transfer")]
-    partial class Transfer
+    [Migration("20230206212555_Killer")]
+    partial class Killer
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,9 +33,15 @@ namespace decoderslasherp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -44,10 +50,7 @@ namespace decoderslasherp.Migrations
                     b.Property<int>("UserAdd")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserDel")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserMod")
+                    b.Property<int?>("UserMod")
                         .HasColumnType("int");
 
                     b.Property<bool>("isActive")
@@ -79,6 +82,9 @@ namespace decoderslasherp.Migrations
                     b.Property<decimal>("BasicSalary")
                         .HasColumnType("decimal(18, 4)");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("CredentialsID")
                         .HasColumnType("int");
 
@@ -106,6 +112,9 @@ namespace decoderslasherp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<decimal>("OverTimeHourlyRate")
                         .HasColumnType("decimal(18, 4)");
 
@@ -116,10 +125,7 @@ namespace decoderslasherp.Migrations
                     b.Property<int>("UserAdd")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserDel")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserMod")
+                    b.Property<int?>("UserMod")
                         .HasColumnType("int");
 
                     b.Property<bool>("isActive")

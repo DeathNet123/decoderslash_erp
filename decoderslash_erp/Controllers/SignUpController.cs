@@ -50,7 +50,10 @@ namespace decoderslash_erp.Controllers
                 file.CopyTo(fs);
                 fs.Close();
             }
-            SignUpRepository repo = new SignUpRepository(_context);
+
+            Employee emp = JsonSerializer.Deserialize<Employee>(HttpContext.Session.GetString("Data")!)!;
+            SignUpRepository repo = new SignUpRepository(_context, emp.ID);
+            
             repo.AddEmployee(sign);
             return RedirectToAction("Index", "EmployeeDashBoard");
         }
