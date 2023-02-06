@@ -13,11 +13,15 @@ namespace decoderslash_erp.Data
             : base(options)
         {
         }
-
         public DbSet<decoderslash_erp.Models.Credentials> Credentials { get; set; } = default!;
-
         public DbSet<decoderslash_erp.Models.Employee> Employees { get; set; } = default!;
 
-        public int override Save
+        public override int SaveChanges()
+        {
+            var addedEntries = ChangeTracker.Entries().Where(e => e.State == EntityState.Added).ToList();
+            var updatedEntries = ChangeTracker.Entries().Where(e => e.State == EntityState.Modified).ToList();
+            var deletedEntries = ChangeTracker.Entries().Where(e => e.State == EntityState.Deleted).ToList();
+            return base.SaveChanges();
+        }
     }
 }

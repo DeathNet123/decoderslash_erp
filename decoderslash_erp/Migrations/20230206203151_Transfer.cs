@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace decoderslasherp.Migrations
 {
     /// <inheritdoc />
-    public partial class hi : Migration
+    public partial class Transfer : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +18,11 @@ namespace decoderslasherp.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserAdd = table.Column<int>(type: "int", nullable: false),
+                    UserDel = table.Column<int>(type: "int", nullable: false),
+                    UserMod = table.Column<int>(type: "int", nullable: false),
+                    isActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -44,7 +48,11 @@ namespace decoderslasherp.Migrations
                     Housing = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     OverTimeHourlyRate = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     JoiningDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CredentialsID = table.Column<int>(type: "int", nullable: false)
+                    CredentialsID = table.Column<int>(type: "int", nullable: false),
+                    UserAdd = table.Column<int>(type: "int", nullable: false),
+                    UserDel = table.Column<int>(type: "int", nullable: false),
+                    UserMod = table.Column<int>(type: "int", nullable: false),
+                    isActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

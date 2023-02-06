@@ -12,8 +12,8 @@ using decoderslash_erp.Data;
 namespace decoderslasherp.Migrations
 {
     [DbContext(typeof(decoderslash_erpContext))]
-    [Migration("20230206181204_Audit")]
-    partial class Audit
+    [Migration("20230206203302_Transfer2")]
+    partial class Transfer2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,9 +33,15 @@ namespace decoderslasherp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -79,6 +85,9 @@ namespace decoderslasherp.Migrations
                     b.Property<decimal>("BasicSalary")
                         .HasColumnType("decimal(18, 4)");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("CredentialsID")
                         .HasColumnType("int");
 
@@ -105,6 +114,9 @@ namespace decoderslasherp.Migrations
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<decimal>("OverTimeHourlyRate")
                         .HasColumnType("decimal(18, 4)");

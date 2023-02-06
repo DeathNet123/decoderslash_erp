@@ -12,8 +12,8 @@ using decoderslash_erp.Data;
 namespace decoderslasherp.Migrations
 {
     [DbContext(typeof(decoderslash_erpContext))]
-    [Migration("20230206174819_hi")]
-    partial class hi
+    [Migration("20230206203151_Transfer")]
+    partial class Transfer
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,18 @@ namespace decoderslasherp.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserAdd")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserDel")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserMod")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
 
                     b.HasKey("ID");
 
@@ -100,6 +112,18 @@ namespace decoderslasherp.Migrations
                     b.Property<string>("PhoneNo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserAdd")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserDel")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserMod")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
 
                     b.HasKey("ID");
 

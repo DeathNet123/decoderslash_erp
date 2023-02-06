@@ -38,6 +38,18 @@ namespace decoderslasherp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserAdd")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserDel")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserMod")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
+
                     b.HasKey("ID");
 
                     b.ToTable("Credentials");
@@ -97,6 +109,18 @@ namespace decoderslasherp.Migrations
                     b.Property<string>("PhoneNo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserAdd")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserDel")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserMod")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
 
                     b.HasKey("ID");
 
