@@ -16,7 +16,7 @@ namespace decoderslash_erp.Data
         public int UserId { get; set; }
         public DbSet<decoderslash_erp.Models.Credentials> Credentials { get; set; } = default!;
         public DbSet<decoderslash_erp.Models.Employee> Employees { get; set; } = default!;
-
+        public DbSet<decoderslash_erp.Models.Project> Projects { get; set; } = default!;
         public override int SaveChanges()
         {
             var addedEntries = ChangeTracker.Entries().Where(e => e.State == EntityState.Added).ToList();

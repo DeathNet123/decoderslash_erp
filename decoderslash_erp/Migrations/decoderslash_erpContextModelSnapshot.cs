@@ -44,7 +44,7 @@ namespace decoderslasherp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserAdd")
+                    b.Property<int?>("UserAdd")
                         .HasColumnType("int");
 
                     b.Property<int?>("UserDel")
@@ -122,7 +122,7 @@ namespace decoderslasherp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserAdd")
+                    b.Property<int?>("UserAdd")
                         .HasColumnType("int");
 
                     b.Property<int?>("UserDel")
@@ -137,6 +137,53 @@ namespace decoderslasherp.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("decoderslash_erp.Models.Project", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProjectManagerID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TeamID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserAdd")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserDel")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserMod")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("isActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Projects");
                 });
 #pragma warning restore 612, 618
         }

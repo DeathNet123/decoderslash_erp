@@ -2,7 +2,7 @@
 {
     public interface Audit0
     {
-        public int UserAdd { get; set; }
+        public int? UserAdd { get; set; }
         public int? UserMod { get; set; }
         public bool? isActive { get; set; }
         public DateTime? CreatedDate { get; set; }

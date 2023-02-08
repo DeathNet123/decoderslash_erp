@@ -36,9 +36,9 @@ namespace decoderslash_erp.Controllers
             {
                 AllSections = DashBoardRepository.MakeEmployeeSectionsList();
             }
-            else if (emp.Designation == "Finance")
+            else if (emp.Designation == "Project_Manager")
             {
-                AllSections = DashBoardRepository.MakeFinanceSectionsList();
+                AllSections = DashBoardRepository.MakeProjectManagerSectionsList();
             }
             dashBoard.controls = AllSections;
 
