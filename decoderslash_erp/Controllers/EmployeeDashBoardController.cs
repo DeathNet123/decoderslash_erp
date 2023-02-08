@@ -21,7 +21,7 @@ namespace decoderslash_erp.Controllers
             if (HttpContext.Session.GetString("Cred") == null)
                 return RedirectToAction("Index", "Login");
             String? cake = HttpContext.Session.GetString("Data");
-            Employee? emp = JsonSerializer.Deserialize<Employee>(cake!);
+            Employee emp = JsonSerializer.Deserialize<Employee>(cake!)!;
 
             DashBoard dashBoard = new DashBoard();
             dashBoard.employee = emp;
@@ -32,7 +32,7 @@ namespace decoderslash_erp.Controllers
             {
                 AllSections = DashBoardRepository.MakeAdminSectionsList();
             }
-            else if(emp.Designation == "Employee")
+            else if (emp.Designation == "Employee")
             {
                 AllSections = DashBoardRepository.MakeEmployeeSectionsList();
             }
@@ -43,44 +43,6 @@ namespace decoderslash_erp.Controllers
             dashBoard.controls = AllSections;
 
             return View(dashBoard!);
-        }
-
-        [HttpGet]
-        public IActionResult SearchEmployee()
-        {
-            return View("search_by_id_form");
-        }
-
-        [HttpGet]
-        public IActionResult DeleteEmployee()
-        {
-            return View("delete_by_id_form");
-        }
-
-        [HttpPost]
-        public IActionResult SearchEmployee(int id)
-        {
-            DashBoardRepository repo = new DashBoardRepository(_context);
-            Employee emp = repo.SearchEmployee(id);
-            if (emp == null)
-            {
-                ViewData["response"] = "Employee with given ID does not exist";
-                return View("search_by_id_form");
-            }
-            return View("ShowEmployee", emp);
-        }
-        [HttpPost]
-        public IActionResult DeleteEmployee(int id)
-        {
-            DashBoardRepository repo = new DashBoardRepository(_context);
-            int ans = repo.DeleteEmployee(id);
-            if (ans == 0)
-            {
-                ViewData["response"] = "Employee with given ID does not exist";
-                return View("delete_by_id_form");
-            }
-            ViewData["response"] = "Employee deleted successfully";
-            return View("delete_by_id_form");
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿<span>@ViewData["response"]</span>
-
+﻿@{
+    ViewData["Title"] = "Delete";
+}
+<h3 class="text-danger">@ViewData["response"]</h3>
 <h1>Delete Employee</h1>
 
 <form method="post" asp-controller="EmployeeDashBoard" asp-action="DeleteEmployee">
