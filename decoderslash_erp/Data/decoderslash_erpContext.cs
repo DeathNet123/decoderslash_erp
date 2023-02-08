@@ -25,10 +25,10 @@ namespace decoderslash_erp.Data
 
             foreach(var entity in addedEntries)
             {
-                Console.WriteLine("I was here");
                 var data = entity.Entity;
                 var temp = (Audit0)data;
                 temp.UserAdd = UserId;
+                temp.isActive = true;
                 temp.CreatedDate = DateTime.Now;
                 temp.ModifiedDate = DateTime.Now;
 
@@ -36,12 +36,27 @@ namespace decoderslash_erp.Data
 
             foreach (var entity in updatedEntries)
             {
-                var temp = (Audit0)entity;
+                var temp = (Audit0)entity.Entity;
                 temp.UserMod = UserId;
-                temp.ModifiedDate = DateTime.Now
-               
+                temp.ModifiedDate = DateTime.Now;
             }
 
+            foreach(var entity in deletedEntries)
+            {
+                try
+                {
+                    var temp = (Audit0)entity.Entity;
+                    temp.isActive = false;
+                    temp.UserDel = UserId;
+                    entity.State = EntityState.Modified;
+                }
+                catch
+                {
+                    continue;
+                }   
+                
+            }
+            ChangeTracker.DetectChanges();
             return base.SaveChanges();
         }
     }

@@ -30,14 +30,14 @@ namespace decoderslasherp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Password")
@@ -47,10 +47,13 @@ namespace decoderslasherp.Migrations
                     b.Property<int>("UserAdd")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UserDel")
+                        .HasColumnType("int");
+
                     b.Property<int?>("UserMod")
                         .HasColumnType("int");
 
-                    b.Property<bool>("isActive")
+                    b.Property<bool?>("isActive")
                         .HasColumnType("bit");
 
                     b.HasKey("ID");
@@ -79,7 +82,7 @@ namespace decoderslasherp.Migrations
                     b.Property<decimal>("BasicSalary")
                         .HasColumnType("decimal(18, 4)");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("CredentialsID")
@@ -109,7 +112,7 @@ namespace decoderslasherp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("OverTimeHourlyRate")
@@ -122,10 +125,13 @@ namespace decoderslasherp.Migrations
                     b.Property<int>("UserAdd")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UserDel")
+                        .HasColumnType("int");
+
                     b.Property<int?>("UserMod")
                         .HasColumnType("int");
 
-                    b.Property<bool>("isActive")
+                    b.Property<bool?>("isActive")
                         .HasColumnType("bit");
 
                     b.HasKey("ID");
