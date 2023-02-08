@@ -17,5 +17,11 @@ namespace decoderslash_erp.Controllers
         {
             return View();
         }
+
+        public IActionResult Error()
+        {
+            return View();
+        }
     }
+
 }

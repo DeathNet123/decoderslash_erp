@@ -236,7 +236,7 @@ namespace decoderslash_erp.Models
             Employee? emp = _context.Employees.FirstOrDefault((Employee emp) => emp.ID.Equals(id));
             return emp;
         }
-        public int DeleteEmployee(int id)
+        public int DeleteEmployee(int id, int UserID)
         {
             Employee? emp = _context.Employees.FirstOrDefault((Employee emp) => emp.ID.Equals(id));
             if (emp == null)
@@ -245,6 +245,7 @@ namespace decoderslash_erp.Models
             }
             int cred_id = emp.CredentialsID;
             Credentials cred = _context.Credentials.FirstOrDefault((cred) => cred.ID == cred_id)!;
+            _context.UserId = UserID;
             _context.Employees.Remove(emp);
             _context.Credentials.Remove(cred);
             _context.SaveChanges();

@@ -1,0 +1,33 @@
+﻿@{
+	ViewData["Title"] = null;
+
+	string ErrorHead = ViewContext.HttpContext.Session.GetString("ErrorHead") ?? "404";
+	string ErrorPara = ViewContext.HttpContext.Session.GetString("ErrorHead") ?? "Looks Like you are Lost"; 
+}
+<style>
+
+	.page_404 img 
+	{
+		width: 100%;
+	}
+	.four_zero_four_bg 
+	{
+		background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+		height: 400px;
+		background-position: center;
+	}
+
+
+</style>
+
+<section class="page_404">
+	<div class="container text-center">
+		<h1 class="text-center text-warning">Error</h1>
+		<div class="four_zero_four_bg"></div>
+		<div class="contant_box_404">
+			<h3 class="h2 text-danger">@ErrorHead</h3>
+			<p class="text-black">@ErrorPara</p>
+			<a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Go to Home</a>
+		</div>
+	</div>
+</section>
