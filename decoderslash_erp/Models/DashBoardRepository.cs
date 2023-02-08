@@ -112,7 +112,7 @@ namespace decoderslash_erp.Models
 
             return cardsectionlist;
         }
-        public static List<CardSectionModel> MakeFinanceSectionsList()
+        public static List<CardSectionModel> MakeProjectManagerSectionsList()
         {
             List<CardModelLeft> cards = new List<CardModelLeft>();
             cards.Add(new CardModelLeft
