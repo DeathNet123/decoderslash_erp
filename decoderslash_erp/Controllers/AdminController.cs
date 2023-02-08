@@ -66,14 +66,15 @@ namespace decoderslash_erp.Controllers
 				return RedirectToAction("Login", "Login");
 			if (!CheckAccess())
 			    return RedirectToAction("Error", "Home");
-			DashBoardRepository repo = new DashBoardRepository(_context);
-            Employee? emp = repo.SearchEmployee(id);
-            if (emp == null)
+            Employee emp = JsonSerializer.Deserialize<Employee>(HttpContext.Session.GetString("Data")!)!;
+            DashBoardRepository repo = new DashBoardRepository(_context, emp.ID);
+            Employee? emps = repo.SearchEmployee(id);
+            if (emps == null)
             {
                 ViewData["response"] = "Employee with given ID does not exist";
                 return View();
             }
-            return View("ShowEmployee", emp);
+            return View("ShowEmployee", emps);
         }
         [HttpPost]
         public IActionResult DeleteEmployee(int id)
@@ -82,9 +83,9 @@ namespace decoderslash_erp.Controllers
 				return RedirectToAction("Login", "Login");
 			if (!CheckAccess())
 				return RedirectToAction("Error", "Home");
-			DashBoardRepository repo = new DashBoardRepository(_context);
             Employee emp = JsonSerializer.Deserialize<Employee>(HttpContext.Session.GetString("Data")!)!;
-            int ans = repo.DeleteEmployee(id, emp.ID);
+            DashBoardRepository repo = new DashBoardRepository(_context, emp.ID);            
+            int ans = repo.DeleteEmployee(id);
             if (ans == 0)
             {
                 ViewData["response"] = "Employee with given ID does not exist";

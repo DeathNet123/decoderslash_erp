@@ -7,9 +7,10 @@ namespace decoderslash_erp.Models
     {
         private readonly decoderslash_erpContext _context;
 
-        public DashBoardRepository(decoderslash_erpContext context)
+        public DashBoardRepository(decoderslash_erpContext context, int User_Id)
         {
             _context = context;
+            _context.UserId = User_Id;
         }
         public static List<CardSectionModel> MakeEmployeeSectionsList()
         {
@@ -81,7 +82,7 @@ namespace decoderslash_erp.Models
                 Tag = "Show Employee",
                 Icon = "icon-user success",
                 Types = "Right",
-                Controller = "EmployeeDashBoard",
+                Controller = "Admin",
                 Action = "SearchEmployee"
             });
 
@@ -91,7 +92,7 @@ namespace decoderslash_erp.Models
                 Tag = "Delete Employee",
                 Icon = "icon-book-open primary",
                 Types = "Left",
-                Controller = "EmployeeDashBoard",
+                Controller = "Admin",
                 Action = "DeleteEmployee"
             });
 
@@ -236,7 +237,7 @@ namespace decoderslash_erp.Models
             Employee? emp = _context.Employees.FirstOrDefault((Employee emp) => emp.ID.Equals(id));
             return emp;
         }
-        public int DeleteEmployee(int id, int UserID)
+        public int DeleteEmployee(int id)
         {
             Employee? emp = _context.Employees.FirstOrDefault((Employee emp) => emp.ID.Equals(id));
             if (emp == null)
@@ -245,7 +246,6 @@ namespace decoderslash_erp.Models
             }
             int cred_id = emp.CredentialsID;
             Credentials cred = _context.Credentials.FirstOrDefault((cred) => cred.ID == cred_id)!;
-            _context.UserId = UserID;
             _context.Employees.Remove(emp);
             _context.Credentials.Remove(cred);
             _context.SaveChanges();

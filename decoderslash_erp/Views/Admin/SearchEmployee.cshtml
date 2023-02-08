@@ -4,18 +4,17 @@
 
 <h3 class="text-danger">@ViewData["response"]</h3>
 
-<h1>Search Employee</h1>
+<div class="container-fluid w-50 flex-grow-1">
+    <h1 class="text-capitalize text-center">Search Employee</h1>
+    <form method="post" asp-controller="Admin" asp-action="SearchEmployee">
+        <div class="mb-3">
+            <label class="form-label" name="id">Employee ID</label>
+            <input type="number" class="form-control" required name="id">
+        </div>
+        <div class=" = text-center w-100 mt-2">
+            <button type="submit" class="btn btn-primary w-75">Search</button>
+        </div>
+    </form>
+</div>
 
-<form method="post" asp-controller="EmployeeDashBoard" asp-action="SearchEmployee">
-    <div class="row g-3 align-items-center mb-3 ml-5 mt-5">
-      <div class="col-auto">
-            <label for="search_id" class="col-form-label">ID</label>
-      </div>
-      <div class="col-auto">
-            <input type="number" id="search_id" class="form-control" name="id" aria-describedby="search_id">
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
-<div class="text-center w-100 mt-5"> <a type="submit" class="btn btn-primary w-75" asp-controller="EmployeeDashBoard" asp-action="Index">Go back to Home</a></div>
+<div class="text-center w-100 mt-5"> <a type="submit" class="btn btn-primary w-75" asp-controller="EmployeeDashBoard" asp-action="Index">DashBoard</a></div>
