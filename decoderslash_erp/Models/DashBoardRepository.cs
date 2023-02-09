@@ -235,12 +235,17 @@ namespace decoderslash_erp.Models
         public Employee? SearchEmployee(int id)
         {
             Employee? emp = _context.Employees.FirstOrDefault((Employee emp) => emp.ID.Equals(id));
-            return emp;
+            if (emp != null && emp.isActive == true)
+            {
+                return emp;
+            }
+            else
+                return null;
         }
         public int DeleteEmployee(int id)
         {
             Employee? emp = _context.Employees.FirstOrDefault((Employee emp) => emp.ID.Equals(id));
-            if (emp == null)
+            if (emp == null || emp.isActive == false)
             {
                 return 0;
             }

@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using decoderslash_erp.Data;
 using decoderslash_erp.Models;
-
+using System.ComponentModel.Design;
 
 namespace decoderslash_erp.Controllers
 {
@@ -64,8 +64,10 @@ namespace decoderslash_erp.Controllers
             Credentials? cred = _context.Credentials.FirstOrDefault((Credentials creds) => creds.Email == user_cred.Email && creds.Password == user_cred.Password);
             if(cred != null)
             {
-                Console.WriteLine("found");
+                bool active = cred.isActive ?? false;
+                if (!active) return false;
                 Employee? data = _context.Employees.FirstOrDefault((Employee emp) => emp.CredentialsID == cred.ID);
+
                 MakeSession(cred, data!);
                 return true;
             }
