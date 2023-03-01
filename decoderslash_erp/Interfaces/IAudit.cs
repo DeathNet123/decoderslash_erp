@@ -1,4 +1,4 @@
-﻿namespace decoderslash_erp.Models
+﻿namespace decoderslash_erp.Interfaces
 {
     public interface IAudit
     {

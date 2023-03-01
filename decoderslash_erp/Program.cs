@@ -4,11 +4,15 @@ using decoderslash_erp.Data;
 using Microsoft.AspNetCore.Session;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using decoderslash_erp.Models;
+using decoderslash_erp.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<decoderslash_erpContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("decoderslash_erpContext") ?? throw new InvalidOperationException("Connection string 'decoderslash_erpContext' not found.")));
+
+builder.Services.AddTransient<IAdminRepo, AdminRepository>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

@@ -232,29 +232,5 @@ namespace decoderslash_erp.Models
 
             return cardsectionlist;
         }
-        public Employee? SearchEmployee(int id)
-        {
-            Employee? emp = _context.Employees.FirstOrDefault((Employee emp) => emp.ID.Equals(id));
-            if (emp != null && emp.isActive == true)
-            {
-                return emp;
-            }
-            else
-                return null;
-        }
-        public int DeleteEmployee(int id)
-        {
-            Employee? emp = _context.Employees.FirstOrDefault((Employee emp) => emp.ID.Equals(id));
-            if (emp == null || emp.isActive == false)
-            {
-                return 0;
-            }
-            int cred_id = emp.CredentialsID;
-            Credentials cred = _context.Credentials.FirstOrDefault((cred) => cred.ID == cred_id)!;
-            _context.Employees.Remove(emp);
-            _context.Credentials.Remove(cred);
-            _context.SaveChanges();
-            return 1;
-        }
     }
 }

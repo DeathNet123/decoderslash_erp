@@ -3,6 +3,7 @@ using decoderslash_erp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using System.Text.Json;
+using decoderslash_erp.Interfaces;
 
 namespace decoderslash_erp.Controllers
 {
@@ -12,9 +13,11 @@ namespace decoderslash_erp.Controllers
     public class AdminController : Controller
     {
         private readonly decoderslash_erpContext _context;
-        public AdminController(decoderslash_erpContext context) 
+        private readonly IAdminRepo _repo;
+        public AdminController(decoderslash_erpContext context, IAdminRepo repo) 
         {
             _context = context;
+            _repo = repo;
         }
 
         public bool CheckAccess()
@@ -67,8 +70,8 @@ namespace decoderslash_erp.Controllers
 			if (!CheckAccess())
 			    return RedirectToAction("Error", "Home");
             Employee emp = JsonSerializer.Deserialize<Employee>(HttpContext.Session.GetString("Data")!)!;
-            DashBoardRepository repo = new DashBoardRepository(_context, emp.ID);
-            Employee? emps = repo.SearchEmployee(id);
+            _repo.FillData(_context, emp.ID);
+            Employee? emps = _repo.SearchEmployee(id);
             if (emps == null)
             {
                 ViewData["response"] = "Employee with given ID does not exist";
@@ -84,8 +87,8 @@ namespace decoderslash_erp.Controllers
 			if (!CheckAccess())
 				return RedirectToAction("Error", "Home");
             Employee emp = JsonSerializer.Deserialize<Employee>(HttpContext.Session.GetString("Data")!)!;
-            DashBoardRepository repo = new DashBoardRepository(_context, emp.ID);            
-            int ans = repo.DeleteEmployee(id);
+            _repo.FillData(_context, emp.ID);            
+            int ans = _repo.DeleteEmployee(id);
             if (ans == 0)
             {
                 ViewData["response"] = "Employee with given ID does not exist";

@@ -1,4 +1,6 @@
-﻿namespace decoderslash_erp.Models
+﻿using decoderslash_erp.Interfaces;
+
+namespace decoderslash_erp.Models
 {
     public abstract class Audit: IAudit
     {

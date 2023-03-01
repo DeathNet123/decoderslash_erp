@@ -10,16 +10,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using decoderslash_erp.Data;
 using decoderslash_erp.Models;
+using decoderslash_erp.Interfaces;
 
 namespace decoderslash_erp.Controllers
 {
     public class SignUpController : Controller
     {
         private readonly decoderslash_erpContext _context;
+        private readonly IAdminRepo _signRepo;
 
-        public SignUpController(decoderslash_erpContext context)
+        public SignUpController(decoderslash_erpContext context, IAdminRepo signRepo)
         {
             _context = context;
+            _signRepo = signRepo;
         }
         public IActionResult Index()
         {
@@ -52,9 +55,9 @@ namespace decoderslash_erp.Controllers
             }
 
             Employee emp = JsonSerializer.Deserialize<Employee>(HttpContext.Session.GetString("Data")!)!;
-            SignUpRepository repo = new SignUpRepository(_context, emp.ID);
+            _signRepo.FillData(_context, emp.ID);
             
-            repo.AddEmployee(sign);
+            _signRepo.AddEmployee(sign);
             return RedirectToAction("Index", "EmployeeDashBoard");
         }
     }

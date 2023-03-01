@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using decoderslash_erp.Models;
+using decoderslash_erp.Interfaces;
 
 namespace decoderslash_erp.Data
 {

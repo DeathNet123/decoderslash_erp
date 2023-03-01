@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace decoderslasherp.Migrations
 {
     /// <inheritdoc />
-    public partial class RelationAdded : Migration
+    public partial class DeleteRandom : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
