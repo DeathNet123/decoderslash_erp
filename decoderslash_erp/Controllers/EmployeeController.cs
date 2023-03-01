@@ -45,5 +45,16 @@ namespace decoderslash_erp.Controllers
             Employee emp = JsonSerializer.Deserialize<Employee>(HttpContext.Session.GetString("Data")!)!;
             return View(emp);
         }
+        public IActionResult TeamDetails()
+        {
+            if (!CheckSession())
+                return RedirectToAction("Login", "Login");
+            if (!CheckAccess())
+                return RedirectToAction("Error", "Home");
+            Employee emp = JsonSerializer.Deserialize<Employee>(HttpContext.Session.GetString("Data")!)!;
+            Team teams = _repo.GetTeamDetails(emp.TeamID);
+            Employee manager = _repo.GetProjectManager(teams.project.ProjectManagerID);
+            return View(new TeamDetails { team = teams, ProjectManager = manager});
+        }
     }
 }

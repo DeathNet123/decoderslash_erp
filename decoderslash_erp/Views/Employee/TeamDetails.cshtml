@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "TeamDetails";
+}
+
+@model TeamDetails
+
+<div class="container-fluid">
+    <h3 class="text-center m-5">Project Manager</h3>
+    <partial name="_ShowEmployee" model="@Model.ProjectManager" />
+    <h3 class="text-center">Team</h3>
+    <partial name="_TeamDetails" model="@Model.team" />
+    <h3 class="m-5">Project Details</h3>
+    <ul class="list-group">
+        <li class="list-group-item">Project Name : @Model.team.project.Name</li>
+        <li class="list-group-item">Start Date : @Model.team.project.StartDate</li>
+        <li class="list-group-item">End Date : @Model.team.project.EndDate</li>
+    </ul>
+    <a class="btn btn-info m-5" target="_blank" asp-controller="#" asp-action="#">Download Proposal</a>
+</div>

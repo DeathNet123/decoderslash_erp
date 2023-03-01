@@ -1,5 +1,7 @@
 ﻿using decoderslash_erp.Data;
 using decoderslash_erp.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace decoderslash_erp.Models
 {
@@ -19,9 +21,10 @@ namespace decoderslash_erp.Models
         {
             _context = context;
         }
-        public Team GetTeamDetails(int id)
+        public Team GetTeamDetails(int? id)
         {
-            return new Team();
+            Team team = _context.Teams.Include(t => t.project).FirstOrDefault(t => t.ID == id)!; //Eager loading
+            return team;
         }
         public Project GetProject(int id)
         {
@@ -29,7 +32,8 @@ namespace decoderslash_erp.Models
         }
         public Employee GetProjectManager(int id)
         {
-            return new Employee();
+            Employee emp = _context.Employees.FirstOrDefault(e => e.ID == id)!;
+            return emp;
         }
     }
 }
