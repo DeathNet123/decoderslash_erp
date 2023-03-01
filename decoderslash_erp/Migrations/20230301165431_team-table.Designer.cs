@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using decoderslash_erp.Data;
 
@@ -11,9 +12,11 @@ using decoderslash_erp.Data;
 namespace decoderslasherp.Migrations
 {
     [DbContext(typeof(decoderslash_erpContext))]
-    partial class decoderslasherpContextModelSnapshot : ModelSnapshot
+    [Migration("20230301165431_team-table")]
+    partial class teamtable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,6 +125,9 @@ namespace decoderslasherp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("TeamID")
+                        .HasColumnType("int");
+
                     b.Property<int?>("UserAdd")
                         .HasColumnType("int");
 
@@ -137,6 +143,8 @@ namespace decoderslasherp.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("CredentialsID");
+
+                    b.HasIndex("TeamID");
 
                     b.ToTable("Employees");
                 });
@@ -187,6 +195,46 @@ namespace decoderslasherp.Migrations
                     b.ToTable("Projects");
                 });
 
+            modelBuilder.Entity("decoderslash_erp.Models.Team", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProjectID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TeamName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UserAdd")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserDel")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserMod")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("isActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ProjectID");
+
+                    b.ToTable("Teams");
+                });
+
             modelBuilder.Entity("decoderslash_erp.Models.Employee", b =>
                 {
                     b.HasOne("decoderslash_erp.Models.Credentials", "Credential")
@@ -195,13 +243,19 @@ namespace decoderslasherp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("decoderslash_erp.Models.Team", "team")
+                        .WithMany()
+                        .HasForeignKey("TeamID");
+
                     b.Navigation("Credential");
+
+                    b.Navigation("team");
                 });
 
             modelBuilder.Entity("decoderslash_erp.Models.Project", b =>
                 {
                     b.HasOne("decoderslash_erp.Models.Employee", "ProjectManager")
-                        .WithMany("Projects")
+                        .WithMany()
                         .HasForeignKey("ProjectManagerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -209,9 +263,20 @@ namespace decoderslasherp.Migrations
                     b.Navigation("ProjectManager");
                 });
 
-            modelBuilder.Entity("decoderslash_erp.Models.Employee", b =>
+            modelBuilder.Entity("decoderslash_erp.Models.Team", b =>
                 {
-                    b.Navigation("Projects");
+                    b.HasOne("decoderslash_erp.Models.Project", "project")
+                        .WithMany("teams")
+                        .HasForeignKey("ProjectID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("project");
+                });
+
+            modelBuilder.Entity("decoderslash_erp.Models.Project", b =>
+                {
+                    b.Navigation("teams");
                 });
 #pragma warning restore 612, 618
         }

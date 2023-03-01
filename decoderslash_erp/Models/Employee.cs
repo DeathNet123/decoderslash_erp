@@ -41,6 +41,7 @@ namespace decoderslash_erp.Models
         public int CredentialsID { get; set; }
         public Credentials? Credential { get; set; }
 
-        public List<Project>? Projects { get; set; }//Collection Navigation
+        public int? TeamID { get; set; }
+        public Team? team { get; set; }
     }
 }

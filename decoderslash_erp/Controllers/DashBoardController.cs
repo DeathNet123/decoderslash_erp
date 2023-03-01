@@ -8,11 +8,11 @@ using System.Text.Json;
 
 namespace decoderslash_erp.Controllers
 {
-    public class EmployeeDashBoardController : Controller
+    public class DashBoardController : Controller
     {
         private readonly decoderslash_erpContext _context;
 
-        public EmployeeDashBoardController(decoderslash_erpContext context)
+        public DashBoardController(decoderslash_erpContext context)
         {
             _context = context;
         }

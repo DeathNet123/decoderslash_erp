@@ -18,10 +18,10 @@ namespace decoderslash_erp.Models
             cards.Add(new CardModelLeft
             {
                 Counter = 1,
-                Tag = "Projects",
+                Tag = "Team Details",
                 Icon = "icon-pencil primary",
                 Types = "Left",
-                Controller = "#",
+                Controller = "Employee",
                 Action = "#"
             });
 
@@ -40,9 +40,9 @@ namespace decoderslash_erp.Models
                 Counter = 3,
                 Tag = "Show Details",
                 Icon = "icon-book-open primary",
-                Controller = "#",
+                Controller = "Employee",
                 Types = "Left",
-                Action = "#"
+                Action = "ShowDetails"
             });
 
             List<List<CardModelLeft>> data = new List<List<CardModelLeft>>();

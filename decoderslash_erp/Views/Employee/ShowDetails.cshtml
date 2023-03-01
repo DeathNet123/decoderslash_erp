@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Details";
+}
+
+@model Employee;
+
+<div class="container-fluid">
+    <h3 class="text-center">Employee Details</h3>
+    <partial name="_ShowEmployee" model="@Model" />
+    <a class="btn btn-info" asp-controller="DashBoard" asp-action="Index">DashBoard</a>
+</div>

@@ -13,6 +13,7 @@ builder.Services.AddDbContext<decoderslash_erpContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("decoderslash_erpContext") ?? throw new InvalidOperationException("Connection string 'decoderslash_erpContext' not found.")));
 
 builder.Services.AddTransient<IAdminRepo, AdminRepository>();
+builder.Services.AddTransient<IEmployeeRepo, EmployeeRepository>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
