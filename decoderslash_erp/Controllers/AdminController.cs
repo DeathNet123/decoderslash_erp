@@ -77,7 +77,7 @@ namespace decoderslash_erp.Controllers
                 ViewData["response"] = "Employee with given ID does not exist";
                 return View();
             }
-            return View("ShowEmployee", emps);
+            return PartialView("_ShowEmployee", emps);
         }
         [HttpPost]
         public IActionResult DeleteEmployee(int id)
