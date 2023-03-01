@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using decoderslash_erp.Data;
 
@@ -11,9 +12,11 @@ using decoderslash_erp.Data;
 namespace decoderslasherp.Migrations
 {
     [DbContext(typeof(decoderslash_erpContext))]
-    partial class decoderslasherpContextModelSnapshot : ModelSnapshot
+    [Migration("20230227101826_retry")]
+    partial class retry
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +24,38 @@ namespace decoderslasherp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("CourseStudent", b =>
+                {
+                    b.Property<int>("CoursesID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentsID")
+                        .HasColumnType("int");
+
+                    b.HasKey("CoursesID", "StudentsID");
+
+                    b.HasIndex("StudentsID");
+
+                    b.ToTable("CourseStudent");
+                });
+
+            modelBuilder.Entity("decoderslash_erp.Models.Course", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Courses");
+                });
 
             modelBuilder.Entity("decoderslash_erp.Models.Credentials", b =>
                 {
@@ -136,6 +171,8 @@ namespace decoderslasherp.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("CredentialsID");
+
                     b.ToTable("Employees");
                 });
 
@@ -166,9 +203,6 @@ namespace decoderslasherp.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("TeamID")
-                        .HasColumnType("int");
-
                     b.Property<int?>("UserAdd")
                         .HasColumnType("int");
 
@@ -183,7 +217,68 @@ namespace decoderslasherp.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("ProjectManagerID");
+
                     b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("decoderslash_erp.Models.Student", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Student");
+                });
+
+            modelBuilder.Entity("CourseStudent", b =>
+                {
+                    b.HasOne("decoderslash_erp.Models.Course", null)
+                        .WithMany()
+                        .HasForeignKey("CoursesID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("decoderslash_erp.Models.Student", null)
+                        .WithMany()
+                        .HasForeignKey("StudentsID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("decoderslash_erp.Models.Employee", b =>
+                {
+                    b.HasOne("decoderslash_erp.Models.Credentials", "Credential")
+                        .WithMany()
+                        .HasForeignKey("CredentialsID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Credential");
+                });
+
+            modelBuilder.Entity("decoderslash_erp.Models.Project", b =>
+                {
+                    b.HasOne("decoderslash_erp.Models.Employee", "ProjectManager")
+                        .WithMany("Projects")
+                        .HasForeignKey("ProjectManagerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProjectManager");
+                });
+
+            modelBuilder.Entity("decoderslash_erp.Models.Employee", b =>
+                {
+                    b.Navigation("Projects");
                 });
 #pragma warning restore 612, 618
         }

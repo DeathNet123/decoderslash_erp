@@ -37,8 +37,10 @@ namespace decoderslash_erp.Models
         [Required]
         [DataType(DataType.DateTime)]
         public DateTime JoiningDate { get; set; }
-        [ForeignKey("Credentials")]
-        public int CredentialsID { get; set; }
 
+        public int CredentialsID { get; set; }
+        public Credentials? Credential { get; set; }
+
+        public List<Project>? Projects { get; set; }//Collection Navigation
     }
 }

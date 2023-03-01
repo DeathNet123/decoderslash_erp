@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace decoderslasherp.Migrations
 {
     /// <inheritdoc />
-    public partial class hello : Migration
+    public partial class RelationAdded : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -61,6 +61,12 @@ namespace decoderslasherp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employees", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Employees_Credentials_CredentialsID",
+                        column: x => x.CredentialsID,
+                        principalTable: "Credentials",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -73,7 +79,6 @@ namespace decoderslasherp.Migrations
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ProjectManagerID = table.Column<int>(type: "int", nullable: false),
-                    TeamID = table.Column<int>(type: "int", nullable: false),
                     UserAdd = table.Column<int>(type: "int", nullable: true),
                     UserMod = table.Column<int>(type: "int", nullable: true),
                     isActive = table.Column<bool>(type: "bit", nullable: true),
@@ -84,20 +89,36 @@ namespace decoderslasherp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Projects", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Projects_Employees_ProjectManagerID",
+                        column: x => x.ProjectManagerID,
+                        principalTable: "Employees",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employees_CredentialsID",
+                table: "Employees",
+                column: "CredentialsID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Projects_ProjectManagerID",
+                table: "Projects",
+                column: "ProjectManagerID");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Credentials");
+                name: "Projects");
 
             migrationBuilder.DropTable(
                 name: "Employees");
 
             migrationBuilder.DropTable(
-                name: "Projects");
+                name: "Credentials");
         }
     }
 }

@@ -23,10 +23,10 @@ namespace decoderslash_erp.Data
             var updatedEntries = ChangeTracker.Entries().Where(e => e.State == EntityState.Modified).ToList();
             var deletedEntries = ChangeTracker.Entries().Where(e => e.State == EntityState.Deleted).ToList();
 
-            foreach(var entity in addedEntries)
+            foreach(var entry in addedEntries)
             {
-                var data = entity.Entity;
-                var temp = (Audit0)data;
+                var data = entry.Entity;
+                var temp = (IAudit)data;
                 temp.UserAdd = UserId;
                 temp.isActive = true;
                 temp.CreatedDate = DateTime.Now;
@@ -34,21 +34,21 @@ namespace decoderslash_erp.Data
 
             }
 
-            foreach (var entity in updatedEntries)
+            foreach (var entry in updatedEntries)
             {
-                var temp = (Audit0)entity.Entity;
+                var temp = (IAudit)entry.Entity;
                 temp.UserMod = UserId;
                 temp.ModifiedDate = DateTime.Now;
             }
 
-            foreach(var entity in deletedEntries)
+            foreach(var entry in deletedEntries)
             {
                 try
                 {
-                    var temp = (Audit0)entity.Entity;
+                    var temp = (IAudit)entry.Entity;
                     temp.isActive = false;
                     temp.UserDel = UserId;
-                    entity.State = EntityState.Modified;
+                    entry.State = EntityState.Modified;
                 }
                 catch
                 {
@@ -56,7 +56,7 @@ namespace decoderslash_erp.Data
                 }   
                 
             }
-            ChangeTracker.DetectChanges();
+            ChangeTracker.DetectChanges();//just to remain safe
             return base.SaveChanges();
         }
     }

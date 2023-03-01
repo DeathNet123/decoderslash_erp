@@ -1,6 +1,6 @@
 ﻿namespace decoderslash_erp.Models
 {
-    public interface Audit0
+    public interface IAudit
     {
         public int? UserAdd { get; set; }
         public int? UserMod { get; set; }

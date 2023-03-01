@@ -6,9 +6,9 @@ services:
     ports:
       - "5000:80"
     environment:
-      - Volume=/tmp/
+      - Volume=/src/
     volumes:
-      - myapp:/tmp/
+      - myapp:/src/
   sql:
     image: decodersql
     container_name: decoderdb #REMEMBER TO POINT YOUR DB STRING TO THIS NAME 
@@ -18,5 +18,7 @@ services:
       - ACCEPT_EULA=y
       - MSSQL_SA_PASSWORD=yourStrong(!)Password
     user: root
+    volumes:
+     - myapp:/src/ 
 volumes:
   myapp:

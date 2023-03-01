@@ -11,6 +11,5 @@ namespace decoderslash_erp.Models
 		[Required(ErrorMessage = "The Password Field Cannot be Left Empty")]
         [DataType(DataType.Password)]
         public String? Password { get; set; }
-
 	}
 }

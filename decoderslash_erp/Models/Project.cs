@@ -16,7 +16,6 @@ namespace decoderslash_erp.Models
         public DateTime EndDate { get; set; }
         [ForeignKey("Employee")]
         public int ProjectManagerID { get; set; }
-        [Required]
-        public int TeamID { get; set; } // <----------- To be handled ----------->
+        public Employee ProjectManager { get; set; } //Reference Navigtaion
     }
 }

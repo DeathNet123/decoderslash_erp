@@ -8,5 +8,6 @@ namespace decoderslash_erp.Models
         public Employee? Emp { get; set; }
         [DataType(DataType.Upload)]
         public IFormFile? file { get; set; }
+
     }
 }
