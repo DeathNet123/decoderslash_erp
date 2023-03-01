@@ -28,7 +28,7 @@ namespace decoderslash_erp.Controllers
         {
             if(HttpContext.Session.GetString("Cred") != null)
             {
-                return RedirectToAction("Index", "EmployeeDashBoard");
+                return RedirectToAction("Index", "DashBoard");
             }
             return View();
         }
@@ -38,7 +38,7 @@ namespace decoderslash_erp.Controllers
         {
             if (HttpContext.Session.GetString("Cred") != null)
             {
-                return RedirectToAction("Index", "EmployeeDashBoard"); // It can be any dashboard not employee specifically
+                return RedirectToAction("Index", "DashBoard"); // It can be any dashboard not employee specifically
             }
             return View("Index");
         }
@@ -54,7 +54,7 @@ namespace decoderslash_erp.Controllers
             bool check = CredentialsExists(cred);
             if(check)
             {
-                return RedirectToAction("Index", "EmployeeDashBoard");
+                return RedirectToAction("Index", "DashBoard");
             }
             ViewData["Valid"] = false;
             return View("Index");
