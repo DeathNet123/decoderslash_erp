@@ -19,7 +19,7 @@
         </form>
     </div>
     <div class="container-fluid">
-        <div id="result" style="display:none">
+        <div id="result">
 
         </div>
     </div>
@@ -34,7 +34,7 @@
             url: '/Admin/SearchEmployee',
             data: data,
             success: function (response) {
-                $("#result").html(response).slideUp(); 
+                $("#result").html(response);
             },
             error: function () {
                 alert('Failed to receive the Data');
