@@ -22,7 +22,7 @@ namespace decoderslash_erp.Models
                 Icon = "icon-pencil primary",
                 Types = "Left",
                 Controller = "Employee",
-                Action = "#"
+                Action = "TeamDetails"
             });
 
             cards.Add(new CardModelLeft
