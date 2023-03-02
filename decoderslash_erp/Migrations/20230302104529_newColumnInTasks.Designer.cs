@@ -12,8 +12,8 @@ using decoderslash_erp.Data;
 namespace decoderslasherp.Migrations
 {
     [DbContext(typeof(decoderslash_erpContext))]
-    [Migration("20230301165431_team-table")]
-    partial class teamtable
+    [Migration("20230302104529_newColumnInTasks")]
+    partial class newColumnInTasks
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -195,6 +195,56 @@ namespace decoderslasherp.Migrations
                     b.ToTable("Projects");
                 });
 
+            modelBuilder.Entity("decoderslash_erp.Models.Tasks", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EmployeeID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProjectID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserAdd")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserDel")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserMod")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("isActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isAssigned")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isCompleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isIssue")
+                        .HasColumnType("bit");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("EmployeeID");
+
+                    b.HasIndex("ProjectID");
+
+                    b.ToTable("Tasks");
+                });
+
             modelBuilder.Entity("decoderslash_erp.Models.Team", b =>
                 {
                     b.Property<int>("ID")
@@ -255,12 +305,31 @@ namespace decoderslasherp.Migrations
             modelBuilder.Entity("decoderslash_erp.Models.Project", b =>
                 {
                     b.HasOne("decoderslash_erp.Models.Employee", "ProjectManager")
-                        .WithMany()
+                        .WithMany("Projects")
                         .HasForeignKey("ProjectManagerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ProjectManager");
+                });
+
+            modelBuilder.Entity("decoderslash_erp.Models.Tasks", b =>
+                {
+                    b.HasOne("decoderslash_erp.Models.Employee", "employee")
+                        .WithMany("Tasks")
+                        .HasForeignKey("EmployeeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("decoderslash_erp.Models.Project", "project")
+                        .WithMany()
+                        .HasForeignKey("ProjectID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("employee");
+
+                    b.Navigation("project");
                 });
 
             modelBuilder.Entity("decoderslash_erp.Models.Team", b =>
@@ -272,6 +341,13 @@ namespace decoderslasherp.Migrations
                         .IsRequired();
 
                     b.Navigation("project");
+                });
+
+            modelBuilder.Entity("decoderslash_erp.Models.Employee", b =>
+                {
+                    b.Navigation("Projects");
+
+                    b.Navigation("Tasks");
                 });
 
             modelBuilder.Entity("decoderslash_erp.Models.Project", b =>
