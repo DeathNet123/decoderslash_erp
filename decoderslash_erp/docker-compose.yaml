@@ -11,7 +11,7 @@ services:
       - myapp:/src/
   sql:
     image: decodersql
-    container_name: decoderdb #REMEMBER TO POINT YOUR DB STRING TO THIS NAME 
+    container_name: decoderslash_erp_db #REMEMBER TO POINT YOUR DB STRING TO THIS NAME 
     ports: # not actually needed, because the two services are on the same network
       - "1433:1433" 
     environment:

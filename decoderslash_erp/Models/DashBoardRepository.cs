@@ -45,9 +45,18 @@ namespace decoderslash_erp.Models
                 Action = "ShowDetails"
             });
 
+            cards.Add(new CardModelLeft
+            {
+                Counter = 4,
+                Tag = "Raise Issue",
+                Icon = "icon-support primary",
+                Controller = "Employee",
+                Types = "Left",
+                Action = "RaiseIssue"
+            });
+
             List<List<CardModelLeft>> data = new List<List<CardModelLeft>>();
             data.Add(cards);
-            //data.Add(cards1);
 
             CardSectionModel cardSection = new CardSectionModel()
             {

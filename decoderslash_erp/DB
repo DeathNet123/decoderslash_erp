@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/mssql/server:2019-latest
 
-COPY ./decoderslash_erpContext-96fc916d-ea40-42f4-b2a0-02870c42efd8.bak /src/
-COPY ./decoderslash_erpContext-96fc916d-ea40-42f4-b2a0-02870c42efd8.mdf /src/
-COPY ./decoderslash_erpContext-96fc916d-ea40-42f4-b2a0-02870c42efd8_log.ldf /src/
+COPY ./decoderslash_erp_db.bak /src/
+COPY ./decoderslash_erp_db.mdf /src/
+COPY ./decoderslash_erp_db_log.ldf /src/
 COPY ./restore_database.sh /src/
