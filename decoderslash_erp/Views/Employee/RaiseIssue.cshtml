@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Issue Maker";
+}
+
+@model Tasks
+<h1 class="text-center text-primary">Raise Issue</h1>
+<div class="container-fluid w-50 flex-grow-1">
+    @{
+        if (ViewData["Done"] != null)
+        {
+            <h3 class="text-center text-capitalize text-info">Task Added Successfully</h3>
+        }
+    }
+    <form method="post" asp-controller="Employee" asp-action="RaiseIssue">
+        <div asp-validation-summary="All">
+        </div>
+        <div class="mb-3">
+            <label asp-for="@Model.TaskName" class="form-label">TaskName</label>
+            <input asp-for="@Model.TaskName" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label asp-for="@Model.details" class="form-label">Details</label>
+            <textarea asp-for="@Model.details" class="form-control" required rows="10" cols="80"></textarea>
+        </div>
+        <div class=" = text-center w-100 mt-2">
+            <button type="submit" class="btn btn-primary w-75">Add</button>
+        </div>
+    </form>
+</div>

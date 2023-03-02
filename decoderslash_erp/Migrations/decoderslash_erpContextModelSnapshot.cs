@@ -212,6 +212,10 @@ namespace decoderslasherp.Migrations
                     b.Property<int>("ProjectID")
                         .HasColumnType("int");
 
+                    b.Property<string>("TaskName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("UserAdd")
                         .HasColumnType("int");
 
@@ -220,6 +224,10 @@ namespace decoderslasherp.Migrations
 
                     b.Property<int?>("UserMod")
                         .HasColumnType("int");
+
+                    b.Property<string>("details")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("isActive")
                         .HasColumnType("bit");

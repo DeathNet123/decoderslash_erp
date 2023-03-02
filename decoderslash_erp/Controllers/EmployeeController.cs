@@ -70,7 +70,47 @@ namespace decoderslash_erp.Controllers
                 return RedirectToAction("Login", "Login");
             if (!CheckAccess())
                 return RedirectToAction("Error", "Home");
+            Employee emp = JsonSerializer.Deserialize<Employee>(HttpContext.Session.GetString("Data")!)!;
+            return View(_repo.GetAllTask(emp));
+        }
+
+        public IActionResult CompleteTask(int id)
+        {
+            if (!CheckSession())
+                return RedirectToAction("Login", "Login");
+            if (!CheckAccess())
+                return RedirectToAction("Error", "Home");
+            Employee emp = JsonSerializer.Deserialize<Employee>(HttpContext.Session.GetString("Data")!)!;
+            _repo.FillData(_context, emp.ID);
+            int result  = _repo.Completeit(id);
+            if(result == -86)
+            {
+                HttpContext.Session.SetString("ErrorHead", "We love you tried");
+                HttpContext.Session.SetString("ErrorPara", "We admire your hacking skills but we got ourseleves covered");
+                return RedirectToAction("Error", "Home");
+            }
+            return RedirectToAction("GetTasks");
+        }
+
+        [HttpGet]
+        public IActionResult RaiseIssue()
+        {
+            if (!CheckSession())
+                return RedirectToAction("Login", "Login");
+            if (!CheckAccess())
+                return RedirectToAction("Error", "Home");
             return View();
+        }
+        public IActionResult RaiseIssue(Tasks task)
+        {
+            if (!CheckSession())
+                return RedirectToAction("Login", "Login");
+            if (!CheckAccess())
+                return RedirectToAction("Error", "Home");
+            Employee emp = JsonSerializer.Deserialize<Employee>(HttpContext.Session.GetString("Data")!)!;
+            _repo.FillData(_context, emp.ID);
+            _repo.WriteIssue(task, emp);
+            return RedirectToAction("RaiseIssue");
         }
     }
 }

@@ -5,7 +5,7 @@
 namespace decoderslasherp.Migrations
 {
     /// <inheritdoc />
-    public partial class updateCol : Migration
+    public partial class VerifySync2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

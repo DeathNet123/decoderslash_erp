@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Tasks";
+}
+
+@model List<Tasks>
+
+<div class="container-fluid">
+    <div class="list-group">
+        @{
+            <h2 class="text-center text-danger">Task List</h2>
+
+            @if(Model.Count == 0)
+            {
+                <h1 class="text-center text-info">Woah Empty List</h1>
+                <p>
+                Good work champ you have done it all.
+                </P>    
+            }
+            foreach(Tasks task in @Model)
+            {
+                <a asp-action="CompleteTask" asp-controller="Employee" asp-route-id="@task.ID" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">@task.TaskName</h5>
+                        <small>Click on it to Complete The Task</small>
+                    </div>
+                    <p class="mb-1">@task.details</p>
+                    <small>Issue : @task.isIssue</small>
+                </a>
+            }
+        }
+    </div>
+</div>

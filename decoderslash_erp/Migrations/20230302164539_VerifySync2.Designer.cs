@@ -12,8 +12,8 @@ using decoderslash_erp.Data;
 namespace decoderslasherp.Migrations
 {
     [DbContext(typeof(decoderslash_erpContext))]
-    [Migration("20230302113255_NewColumnName")]
-    partial class NewColumnName
+    [Migration("20230302164539_VerifySync2")]
+    partial class VerifySync2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -227,6 +227,10 @@ namespace decoderslasherp.Migrations
 
                     b.Property<int?>("UserMod")
                         .HasColumnType("int");
+
+                    b.Property<string>("details")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("isActive")
                         .HasColumnType("bit");

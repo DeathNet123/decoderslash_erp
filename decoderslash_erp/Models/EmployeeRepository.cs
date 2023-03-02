@@ -40,8 +40,32 @@ namespace decoderslash_erp.Models
 
         public List<Tasks> GetAllTask(Employee emp)
         {
-            _context.Entry(emp).Collection(e => e.Tasks).Load();
+            emp.Tasks  = _context.Tasks.Where(t => t.EmployeeID == emp.ID && (t.isActive ?? false) && !t.isCompleted ).ToList();
             return emp.Tasks ?? new List<Tasks>();
+        }
+
+        public int Completeit(int id)
+        {
+            Tasks? ts = _context.Tasks.SingleOrDefault(t => t.ID == id && (t.isActive == true));
+
+            if(ts == null)
+            {
+                return -86;
+            }
+
+            ts.isCompleted = true;
+            _context.Tasks.Update(ts);
+            _context.SaveChanges();
+            return 1;
+        }
+
+        public void WriteIssue(Tasks task, Employee emp)
+        {
+            task.isIssue = true;
+            Team team  = GetTeamDetails(emp.TeamID);
+            task.ProjectID = team.ProjectID ?? 0;
+            _context.Tasks.Add(task);
+            _context.SaveChanges();
         }
     }
 }

@@ -31,8 +31,8 @@ namespace decoderslash_erp.Models
                 Tag = "Tasks",
                 Icon = "icon-user success",
                 Types = "Right",
-                Controller = "#",
-                Action = "#"
+                Controller = "Employee",
+                Action = "GetTasks"
             });
 
             cards.Add(new CardModelLeft
