@@ -27,5 +27,14 @@ namespace decoderslash_erp.Controllers
             FileStream fs = new FileStream(realPath, FileMode.Open, FileAccess.Read);
             return File(fs, "image/png");
         }
+
+        public ActionResult Proposal(String name)
+        {
+            if (HttpContext.Session.GetString("Cred") == null)
+                return RedirectToAction("Index", "Home");
+            String realPath = Path.Combine(Environment.GetEnvironmentVariable("Volume")!, name);
+            FileStream fs = new FileStream(realPath, FileMode.Open, FileAccess.Read);
+            return File(fs, "document/pdf");
+        }
     }
 }
