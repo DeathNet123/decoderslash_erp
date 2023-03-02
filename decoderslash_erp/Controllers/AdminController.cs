@@ -97,5 +97,64 @@ namespace decoderslash_erp.Controllers
             ViewData["response"] = "Employee deleted successfully";
             return View();
         }
+
+        [HttpGet]
+        public IActionResult AddTeam()
+        {
+            if (!CheckSession())
+                return RedirectToAction("Login", "Login");
+            if (!CheckAccess())
+                return RedirectToAction("Error", "Home");
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddTeam(Team team)
+        {
+            if (!CheckSession())
+                return RedirectToAction("Login", "Login");
+            if (!CheckAccess())
+                return RedirectToAction("Error", "Home");
+            if (!ModelState.IsValid) return View();
+
+            ViewData["Done"] = "Finally done";
+            Employee emp = JsonSerializer.Deserialize<Employee>(HttpContext.Session.GetString("Data")!)!;
+            _repo.FillData(_context, emp.ID);//should have make function out of this idiotic code but no one cares now
+            _repo.AddTeam(team);
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult AddProject()
+        {
+            if (!CheckSession())
+                return RedirectToAction("Login", "Login");
+            if (!CheckAccess())
+                return RedirectToAction("Error", "Home");
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddProject(ProjectUpload proj)
+        {
+            if (!CheckSession())
+                return RedirectToAction("Login", "Login");
+            if (!CheckAccess())
+                return RedirectToAction("Error", "Home");
+            Employee emp = JsonSerializer.Deserialize<Employee>(HttpContext.Session.GetString("Data")!)!;
+            _repo.FillData(_context, emp.ID);//should have make function out of this idiotic code but no one cares now
+            _repo.AddProject(proj.project);
+            UploadFile(proj.project.Name!, proj.file);
+            HttpContext.Session.SetString("DoneData", "NotNull");
+            return RedirectToAction("AddProject", "Admin");
+        }
+        public void UploadFile(string name, IFormFile file)
+        {
+            String? location = System.Environment.GetEnvironmentVariable("Volume");
+            String realPath = Path.Combine(location!, name);
+            FileStream fs = new FileStream(realPath, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None);
+            file.CopyTo(fs);
+            fs.Close();
+        }
     }
 }

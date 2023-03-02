@@ -9,7 +9,13 @@ namespace decoderslash_erp.Interfaces
 
         public void FillData(decoderslash_erpContext context, int id);
 
+        public List<Employee> FetchAllEmp();
+
         public Employee SearchEmployee(int id);
         public int DeleteEmployee(int id);
+
+        public void AddProject(Project project);
+
+        public void AddTeam(Team team);
     }
 }

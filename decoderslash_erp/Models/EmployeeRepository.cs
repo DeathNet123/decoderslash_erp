@@ -17,13 +17,15 @@ namespace decoderslash_erp.Models
         {
 
         }
-        public void FillData(decoderslash_erpContext context)
+        public void FillData(decoderslash_erpContext context, int id = 0)
         {
             _context = context;
+            _context.UserId = id;
         }
         public Team GetTeamDetails(int? id)
         {
-            Team team = _context.Teams.Include(t => t.project).FirstOrDefault(t => t.ID == id)!; //Eager loading
+            Team team = _context.Teams.Include(t => t.project).FirstOrDefault(t => t.ID == id && (t.isActive ?? false) )!; //Eager loading
+            //we are not checking for the null since the employee will have at least one team on his board infact exactly one team
             return team;
         }
         public Project GetProject(int id)
@@ -32,8 +34,14 @@ namespace decoderslash_erp.Models
         }
         public Employee GetProjectManager(int id)
         {
-            Employee emp = _context.Employees.FirstOrDefault(e => e.ID == id)!;
+            Employee emp = _context.Employees.FirstOrDefault(e => e.ID == id && (e.isActive ?? false))!;
             return emp;
+        }
+
+        public List<Tasks> GetAllTask(Employee emp)
+        {
+            _context.Entry(emp).Collection(e => e.Tasks).Load();
+            return emp.Tasks ?? new List<Tasks>();
         }
     }
 }

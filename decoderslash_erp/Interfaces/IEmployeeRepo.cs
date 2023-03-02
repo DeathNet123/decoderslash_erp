@@ -7,5 +7,7 @@ namespace decoderslash_erp.Interfaces
         public Team GetTeamDetails(int? id);
         public Project GetProject(int id);
         public Employee GetProjectManager(int id);
+
+        public List<Tasks> GetAllTask(Employee emp);
     }
 }

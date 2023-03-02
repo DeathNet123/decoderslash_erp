@@ -12,8 +12,8 @@ using decoderslash_erp.Data;
 namespace decoderslasherp.Migrations
 {
     [DbContext(typeof(decoderslash_erpContext))]
-    [Migration("20230302104529_newColumnInTasks")]
-    partial class newColumnInTasks
+    [Migration("20230302113255_NewColumnName")]
+    partial class NewColumnName
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -206,7 +206,7 @@ namespace decoderslasherp.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EmployeeID")
+                    b.Property<int?>("EmployeeID")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -214,6 +214,10 @@ namespace decoderslasherp.Migrations
 
                     b.Property<int>("ProjectID")
                         .HasColumnType("int");
+
+                    b.Property<string>("TaskName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("UserAdd")
                         .HasColumnType("int");
@@ -259,7 +263,7 @@ namespace decoderslasherp.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ProjectID")
+                    b.Property<int?>("ProjectID")
                         .HasColumnType("int");
 
                     b.Property<string>("TeamName")
@@ -317,9 +321,7 @@ namespace decoderslasherp.Migrations
                 {
                     b.HasOne("decoderslash_erp.Models.Employee", "employee")
                         .WithMany("Tasks")
-                        .HasForeignKey("EmployeeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EmployeeID");
 
                     b.HasOne("decoderslash_erp.Models.Project", "project")
                         .WithMany()
@@ -336,9 +338,7 @@ namespace decoderslasherp.Migrations
                 {
                     b.HasOne("decoderslash_erp.Models.Project", "project")
                         .WithMany("teams")
-                        .HasForeignKey("ProjectID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProjectID");
 
                     b.Navigation("project");
                 });

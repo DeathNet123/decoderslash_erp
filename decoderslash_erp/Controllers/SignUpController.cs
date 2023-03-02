@@ -56,9 +56,8 @@ namespace decoderslash_erp.Controllers
 
             Employee emp = JsonSerializer.Deserialize<Employee>(HttpContext.Session.GetString("Data")!)!;
             _signRepo.FillData(_context, emp.ID);
-            
             _signRepo.AddEmployee(sign);
-            return RedirectToAction("Index", "EmployeeDashBoard");
+            return RedirectToAction("Index", "DashBoard");
         }
     }
 }

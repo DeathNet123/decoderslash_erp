@@ -43,7 +43,7 @@ namespace decoderslash_erp.Models
 
         public List<Project>? Projects { get; set; }//Collection Navigation
 
-        public List<Tasks> Tasks { get; set; }
+        public List<Tasks>? Tasks { get; set; }
         public int? TeamID { get; set; }
         public Team? team { get; set; }
     }

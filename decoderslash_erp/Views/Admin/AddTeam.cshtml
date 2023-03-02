@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Team";
+}
+
+
+
+@model Team
+
+<div class="container-fluid w-50 flex-grow-1">
+    @{
+        if(ViewData["Done"] != null)
+        {
+            <h3 class="text-center text-capitalize text-info">Team Added Successfully</h3>
+        }
+    }
+    <h1 class="text-capitalize text-center">Team Form</h1>
+    <form method="post" asp-controller="Admin" asp-action="AddTeam">
+        <div asp-validation-summary="All">
+            
+        </div>
+        <div class="mb-3">
+            <label asp-for="@Model.TeamName" class="form-label">TeamName</label>
+            <input asp-for="@Model.TeamName" class="form-control" required>
+        </div>
+        
+        <div class=" = text-center w-100 mt-2">
+            <button type="submit" class="btn btn-primary w-75">Add</button>
+        </div>
+    </form>
+</div>

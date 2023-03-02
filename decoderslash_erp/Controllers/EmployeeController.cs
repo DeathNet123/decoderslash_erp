@@ -52,9 +52,25 @@ namespace decoderslash_erp.Controllers
             if (!CheckAccess())
                 return RedirectToAction("Error", "Home");
             Employee emp = JsonSerializer.Deserialize<Employee>(HttpContext.Session.GetString("Data")!)!;
+            if(emp.TeamID == null)
+            {
+                HttpContext.Session.SetString("ErrorHead", "Woah you are free");
+                HttpContext.Session.SetString("ErrorPara", "Woah you are free ask the Employer to Assign you to work");
+                return RedirectToAction("Error", "Home");
+
+            }
             Team teams = _repo.GetTeamDetails(emp.TeamID);
             Employee manager = _repo.GetProjectManager(teams.project.ProjectManagerID);
             return View(new TeamDetails { team = teams, ProjectManager = manager});
+        }
+
+        public IActionResult GetTasks()
+        {
+            if (!CheckSession())
+                return RedirectToAction("Login", "Login");
+            if (!CheckAccess())
+                return RedirectToAction("Error", "Home");
+            return View();
         }
     }
 }

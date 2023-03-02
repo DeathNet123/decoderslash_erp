@@ -15,6 +15,7 @@ namespace decoderslash_erp.Models
         [DataType(DataType.DateTime)]
         public DateTime EndDate { get; set; }
         [ForeignKey("Employee")]
+        [Required]
         public int ProjectManagerID { get; set; }
         public Employee ProjectManager { get; set; } 
         public List<Team> teams { get; set; }

@@ -58,5 +58,22 @@ namespace decoderslash_erp.Models
             return 1;
         }
 
+        public void AddProject(Project project)
+        {
+            _context.Projects.Add(project);
+            _context.SaveChanges();
+        }
+
+        public void AddTeam(Team team)
+        {
+            _context.Teams.Add(team);
+            _context.SaveChanges();
+        }
+
+        public List<Employee> FetchAllEmp()
+        {
+            return _context.Employees.ToList();
+        }
+
     }
 }

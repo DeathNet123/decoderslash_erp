@@ -52,7 +52,7 @@ namespace decoderslash_erp.Models
             CardSectionModel cardSection = new CardSectionModel()
             {
                 Head = "Site Controls",
-                Tag = "Admins Love Controlling Systems :)",
+                Tag = "Hoady Brother Choose one of the Option :)",
                 Rows = 1,
                 Data = data
             };
@@ -76,6 +76,8 @@ namespace decoderslash_erp.Models
                 Action = "Index"
             });
 
+
+
             cards.Add(new CardModelLeft
             {
                 Counter = 2,
@@ -94,6 +96,26 @@ namespace decoderslash_erp.Models
                 Types = "Left",
                 Controller = "Admin",
                 Action = "DeleteEmployee"
+            });
+
+            cards.Add(new CardModelLeft
+            {
+                Counter = 4,
+                Tag = "Add Team",
+                Icon = "icon-pencil primary",
+                Types = "Left",
+                Controller = "Admin",
+                Action = "AddTeam"
+            });
+
+            cards.Add(new CardModelLeft
+            {
+                Counter = 5,
+                Tag = "Add Project",
+                Icon = "icon-pencil primary",
+                Types = "Left",
+                Controller = "Admin",
+                Action = "AddProject"
             });
 
             List<List<CardModelLeft>> data = new List<List<CardModelLeft>>();
