@@ -149,22 +149,22 @@ namespace decoderslash_erp.Models
             List<CardModelLeft> cards = new List<CardModelLeft>();
             cards.Add(new CardModelLeft
             {
-                Counter = 278,
-                Tag = "Add New User",
+                Counter = 1,
+                Tag = "Projects",
                 Icon = "icon-pencil primary",
                 Types = "Left",
-                Controller = "SignUp",
-                Action = "Index"
+                Controller = "ProjectManager",
+                Action = "GetProject"
             });
 
             cards.Add(new CardModelLeft
             {
-                Counter = 156,
-                Tag = "New Clients",
+                Counter = 2,
+                Tag = "Teams",
                 Icon = "icon-user success",
                 Types = "Right",
-                Controller = "#",
-                Action = "#"
+                Controller = "ProjectManager",
+                Action = "GetTeam"
             });
 
             cards.Add(new CardModelLeft

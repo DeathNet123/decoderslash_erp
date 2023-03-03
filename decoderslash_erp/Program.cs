@@ -14,6 +14,7 @@ builder.Services.AddDbContext<decoderslash_erpContext>(options =>
 
 builder.Services.AddTransient<IAdminRepo, AdminRepository>();
 builder.Services.AddTransient<IEmployeeRepo, EmployeeRepository>();
+builder.Services.AddTransient<IProjectManagerRepo, ProjectManagerRepository>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

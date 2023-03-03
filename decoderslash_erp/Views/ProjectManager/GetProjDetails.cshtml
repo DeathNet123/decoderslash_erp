@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Details";
+}
+
+@model ProjectDetcs
+<div class="container-fluid">
+    <h3 class="text-center m-5">Project @Model.proj.Name</h3>
+
+    <h3 class="text-center">Teams</h3>
+    @{
+        foreach (Team team in Model.proj.teams)
+        {
+            <partial name="_TeamDetails" model="@team" />
+        }
+        
+    }
+    <h3 class="m-5">Project Details</h3>
+    <ul class="list-group">
+        <li class="list-group-item">Project Name : @Model.proj.Name</li>
+        <li class="list-group-item">Start Date : @Model.proj.StartDate</li>
+        <li class="list-group-item">End Date : @Model.proj.EndDate</li>
+    </ul>
+    <a class="btn btn-info m-5" target="_blank" asp-controller="#" asp-action="#">Download Proposal</a>
+
+    <h3 class="text-center">Tasks</h3>
+
+    <div class="list-group">
+        @{
+
+            foreach (Tasks task in @Model.proj.task)
+            {
+                @if (task.isCompleted) continue;
+                <div  class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">@task.TaskName</h5>
+                        <small>Click on it to Complete The Task</small>
+                    </div>
+                    <p class="mb-1">@task.details</p>
+                    <small>Issue : @task.isIssue</small>
+                </div>
+            }
+        }
+    </div>
+
+    <div class="container-fluid w-50 flex-grow-1">
+    <h1 class="text-center text-info">Add Task</h1>
+    @{
+        if (ViewData["Done"] != null)
+        {
+            <h3 class="text-center text-capitalize text-info">Task Added Successfully</h3>
+        }
+    }
+
+    <form method="post" asp-controller="ProjectManager" asp-action="AddTask">
+        <div asp-validation-summary="All">
+        </div>
+        <div class="mb-3">
+            <label asp-for="task.TaskName" class="form-label">TaskName</label>
+            <input asp-for="task.TaskName" class="form-control" required>
+            <input asp-for="Kc" class="form-control" required hidden value="@Model.proj.ID">
+        </div>
+        <div class="mb-3">
+            <label asp-for="task.details" class="form-label">Details</label>
+            <textarea asp-for="task.details" class="form-control" required rows="10" cols="80"></textarea>
+        </div>
+        <div class=" = text-center w-100 mt-2">
+            <button type="submit" class="btn btn-primary w-75">Add</button>
+        </div>
+    </form>
+</div>
+</div>

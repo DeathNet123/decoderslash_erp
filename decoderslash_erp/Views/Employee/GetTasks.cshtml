@@ -5,8 +5,6 @@
 @model List<Tasks>
 
 <div class="container-fluid">
-    <div class="list-group">
-        @{
             <h2 class="text-center text-danger">Task List</h2>
 
             @if(Model.Count == 0)
@@ -16,6 +14,9 @@
                 Good work champ you have done it all.
                 </P>    
             }
+    <div class="list-group">
+        @{
+
             foreach(Tasks task in @Model)
             {
                 <a asp-action="CompleteTask" asp-controller="Employee" asp-route-id="@task.ID" class="list-group-item list-group-item-action flex-column align-items-start">

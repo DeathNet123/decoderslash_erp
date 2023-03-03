@@ -19,5 +19,7 @@ namespace decoderslash_erp.Models
         public int ProjectManagerID { get; set; }
         public Employee ProjectManager { get; set; } 
         public List<Team> teams { get; set; }
+
+        public List<Tasks> task { get; set; }
     }
 }

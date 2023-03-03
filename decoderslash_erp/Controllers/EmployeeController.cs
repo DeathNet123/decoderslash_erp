@@ -19,7 +19,7 @@ namespace decoderslash_erp.Controllers
         public bool CheckAccess()
         {
             String emp = HttpContext.Session.GetString("Designation")!;
-            if (!emp!.Equals("Employee"))
+            if (!emp!.Equals("Employee") || !emp!.Equals("Project_Manager"))
             {
                 HttpContext.Session.SetString("ErrorHead", "Access Denied");
                 HttpContext.Session.SetString("ErrorPara", "Looks you are trying to Access something which you should not be Accessing Be Carefull");

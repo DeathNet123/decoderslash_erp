@@ -35,13 +35,42 @@ namespace decoderslash_erp.Models
         }
         public List<Project> GetProjects(Employee emp)
         {
-            return new List<Project>();
+            return  _context.Projects.Where(p => p.ProjectManagerID == emp.ID && (p.isActive ?? false)).ToList();
         }
         public List<Team> GetTeams(int id)
         {
-            return new List<Team>();
+            List<Project> game = _context.Projects.Include(p => p.teams).Where(p => p.ProjectManagerID == id).ToList();
+            List<Team> teams = new List<Team>();
+            foreach (Project proj in game)
+            {
+                foreach(Team team in proj.teams)
+                {
+                    teams.Add(team);
+                }
+            }
+
+            return teams;
         }
 
 
+        public Project? GetProject(int id)
+        {
+            return _context.Projects.Include(p => p.task).Include(p => p.teams).SingleOrDefault(p => p.ID == id);
+        }
+
+        public List<Employee> FetchAllEmp()
+        {
+            return _context.Employees.Where(e => e.TeamID == null && (e.isActive ?? false)).ToList();
+        }
+
+        public void acqemp(int emid, int tid)
+        {
+            Employee? emp = _context.Employees.SingleOrDefault(e => e.ID == emid);
+            if (null == emp) return;
+            if (null == _context.Teams.SingleOrDefault(t => t.ID == tid)) return;
+            emp.TeamID = tid;
+            _context.Update(emp);
+            _context.SaveChanges();
+        }
     }
 }
